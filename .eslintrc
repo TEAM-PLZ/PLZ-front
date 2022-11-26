@@ -1,0 +1,55 @@
+ {
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:prettier/recommended"
+  ],
+	"rules": {
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{
+				"varsIgnorePattern": "^_",
+				"argsIgnorePattern": "^_"
+			}
+		],
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-array-index-key": "warn",
+		"@typescript-eslint/no-empty-interface": "off",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"@next/next/no-img-element": "off",
+		"@next/next/no-html-link-for-pages": "off",
+		"import/no-anonymous-default-export": [
+			2,
+			{
+				"allowObject": true
+			}
+		],
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "interface",
+				"format": ["PascalCase"],
+				"custom": {
+					"regex": "^I[A-Z]",
+					"match": true
+				}
+			}
+		],
+		"react/jsx-key": ["error", { "checkFragmentShorthand": true }],
+		"no-useless-rename": "error",
+		"object-shorthand": "error"
+	}
+}

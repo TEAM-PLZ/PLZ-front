@@ -1,0 +1,5 @@
+.test {
+  color: red;
+  @apply flex gap-2 border-b-2 border-gray-100 border-solid;
+}
+
