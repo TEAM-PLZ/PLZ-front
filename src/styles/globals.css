@@ -29,13 +29,3 @@ a {
     background: black;
   }
 }
-
-@font-face {
-  font-family: 'SF_HambakSnow';
-  src: url('/public/fonts/SFHambakSnow.ttf');
-}
-
-@font-face {
-  font-family: 'Cafe24Shiningstar';
-  src: url('/public/fonts/Cafe24Shiningstar.ttf');
-}
