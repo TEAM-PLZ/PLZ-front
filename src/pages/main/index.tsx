@@ -1,7 +1,15 @@
 import styles from './main.module.css';
 
-const test = () => {
-  return <div className={styles.test}>테스트1231241241 1231241241 </div>;
+const Main = () => {
+  return (
+    <div className={styles.container}>
+      <p className={styles.headline}>
+        <span>새로운 플리가 도착했어요</span>
+        <br />
+        <span>바로 꺼내볼까요?</span>
+      </p>
+    </div>
+  );
 };
 
-export default test;
+export default Main;
