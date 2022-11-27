@@ -1,11 +1,17 @@
 import 'styles/globals.css';
+import 'styles/reset.css';
+import 'styles/presets.css';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
+import Layout from 'components/Layout';
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </RecoilRoot>
   );
-}
+};
+export default App;

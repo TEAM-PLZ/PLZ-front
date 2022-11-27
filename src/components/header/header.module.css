@@ -1,0 +1,19 @@
+.container {
+  height: 82px;
+  padding: 18px 30px 19px;
+  @apply flex justify-between items-center;
+}
+
+.logos {
+  font-size: 20px;
+  font-weight: 800;
+  @apply flex items-center;
+}
+
+.logos > span {
+  margin-right: 4px;
+}
+
+.icons > img:first-child {
+  margin-right: 21px;
+}
