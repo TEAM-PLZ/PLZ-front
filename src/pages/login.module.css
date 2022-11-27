@@ -16,35 +16,6 @@
 
 .lpWrapper {
   margin: 160px;
-  position: relative;
-}
-
-.lp {
-  animation: rotate 10s linear infinite;
-}
-
-.lp img {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  height: inherit;
-  max-width: inherit;
-}
-
-.lp img:nth-last-of-type(2) {
-  border-radius: 50%;
-}
-
-.lpShadow {
-  position: absolute;
-  top: -112px;
-  left: -81px;
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .bottomWrapper {

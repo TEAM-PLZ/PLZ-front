@@ -1,3 +1,5 @@
+import Lp from 'components/Lp';
+import NewArriveModal from 'components/NewArriveModal';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -27,14 +29,7 @@ const Login = () => {
         <Image src="/icons/logo_lg.svg" width="82" height="61" alt="logo" />
       </div>
       <div className={styles.lpWrapper}>
-        <div className={styles.lpShadow}>
-          <Image src="/images/lp_shadow.svg" width="248" height="248" alt="lp_shadow" />
-        </div>
-        <div className={styles.lp}>
-          <Image src="/images/lp_black.svg" width="248" height="248" alt="lp_black" />
-          <Image src="/images/lp_image.png" width="86" height="86" alt="lp_image" />
-          <Image src="/images/lp_middle.svg" width="12" height="12" alt="lp_middle" />
-        </div>
+        <Lp animation='rotate'/>
       </div>
       <div className={styles.bottomWrapper}>
         <Image src="/images/message.svg" width="301" height="76" alt="message" />
