@@ -1,9 +1,8 @@
-import Album from 'components/Album';
-import Image from 'next/image';
-import React from 'react';
-type Dummy = {
-  albumSrc: string;
-};
+import React, { Fragment } from 'react';
+import Album from './album';
+import { Dummy } from './type';
+import styles from './template.module.css';
+
 interface TemplateProps {
   list: Dummy[];
 }
@@ -11,18 +10,16 @@ interface TemplateProps {
 const Template = ({ list }: TemplateProps) => {
   return (
     <>
-      <div className="flex">
+      <div className="flex justify-between px-[30px]">
         {list.map(item => {
-          return <Album albumSrc={item.albumSrc} />;
+          return (
+            <Fragment key={item.id}>
+              <Album albumSrc={item.albumSrc} />
+            </Fragment>
+          );
         })}
       </div>
-      <Image
-        src="/images/lp_shelf.png"
-        width={0}
-        height={0}
-        className="w-auto h-auto"
-        alt="menu_icon"
-      />
+      <div className={styles.shelf} />
     </>
   );
 };

@@ -5,15 +5,13 @@ import styles from './album.module.css';
 interface IProps {
   albumSrc: string;
 }
-const Album = ({ albumSrc }: IProps) => {
-  const src = albumSrc || '/icons/empty_lp.svg';
-
+const Album = ({ albumSrc = '/icons/empty_lp.svg' }: IProps) => {
+  console.log('albumSrc', albumSrc);
   return (
     <div className={styles.album}>
       <div className={styles.newIcon}>NEW</div>
-
       <div className={styles.albumBox}>
-        <Image src={src} alt="lp_icon" width={0} height={0} className="w-full h-auto" />
+        <Image src={albumSrc} alt="lp_icon" width={0} height={0} className="w-full h-auto" />
       </div>
     </div>
   );

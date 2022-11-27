@@ -12,7 +12,6 @@
 }
 
 .albumList {
-  padding: 0 30px;
   width: 100%;
-  @apply flex flex-wrap justify-between;
+  @apply flex flex-nowrap flex-col justify-between;
 }
