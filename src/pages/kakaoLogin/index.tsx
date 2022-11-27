@@ -19,9 +19,12 @@ const KakaoAuth: NextPage<Props> = props => {
   const getToken = async () => {
     localStorage.setItem('token', props.token);
     const result: IResCheckUser = await checkUser<IResCheckUser>();
-    localStorage.setItem('isFirst', String(result?.isFirst || false));
+    if (result?.isFirst) {
+      localStorage.setItem('isFirst', String(result?.isFirst));
+    } else {
+      localStorage.removeItem('isFirst');
+    }
 
-    // 만약 한 사람이 온보딩을 안 보고 두 번 로그인 한다면?
     window.self.close();
   };
 

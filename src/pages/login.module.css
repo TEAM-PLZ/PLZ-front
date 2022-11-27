@@ -2,12 +2,12 @@
   background-image: linear-gradient(to bottom, #8563a7 0%, #7166b4 47%, #3863a7 100%);
   min-height: 100vh;
   color: white;
-  padding: 60px 0px 90px 0px;
-  @apply flex flex-col items-center justify-between;
+  @apply flex flex-col items-center justify-center;
 }
 
 .logoWrapper {
   text-align: center;
+  @apply flex flex-col items-center justify-center;
 }
 
 .logoWrapper h1 {
@@ -15,18 +15,30 @@
 }
 
 .lpWrapper {
+  margin: 160px;
   position: relative;
+}
+
+.lp {
   animation: rotate 10s linear infinite;
 }
 
-.lpWrapper img {
+.lp img {
   position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  height: inherit;
+  max-width: inherit;
 }
 
-.lpWrapper img:nth-last-of-type(2) {
+.lp img:nth-last-of-type(2) {
   border-radius: 50%;
+}
+
+.lpShadow {
+  position: absolute;
+  top: -112px;
+  left: -81px;
 }
 
 @keyframes rotate {
@@ -57,7 +69,6 @@
 .kakaoButtonText {
   font-family: PretendardMedium;
   line-height: 1.2;
-  letter-spacing: -0.5%;
   font-weight: 400;
   font-size: 20px;
 }
