@@ -1,0 +1,63 @@
+.container {
+  background-image: linear-gradient(to bottom, #8563a7 0%, #7166b4 47%, #3863a7 100%);
+  min-height: 100vh;
+  color: white;
+  padding: 60px 0px 90px 0px;
+  @apply flex flex-col items-center justify-between;
+}
+
+.logoWrapper {
+  text-align: center;
+}
+
+.logoWrapper h1 {
+  margin-bottom: 14px;
+}
+
+.lpWrapper {
+  position: relative;
+  animation: rotate 10s linear infinite;
+}
+
+.lpWrapper img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.lpWrapper img:nth-last-of-type(2) {
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.bottomWrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.kakaoButton {
+  background-color: #fee500;
+  width: 250px;
+  height: 56px;
+  cursor: pointer;
+  border-radius: 12px;
+  margin: 50px auto 0 auto;
+  @apply flex justify-center items-center;
+}
+
+.kakaoButton img {
+  margin-right: 8px;
+}
+
+.kakaoButtonText {
+  font-family: PretendardMedium;
+  line-height: 1.2;
+  letter-spacing: -0.5%;
+  font-weight: 400;
+  font-size: 20px;
+}
