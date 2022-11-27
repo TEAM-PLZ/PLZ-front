@@ -21,7 +21,7 @@ interface IYoutube {
 
 interface IForm {
   singer: string;
-  songTitle: string;
+  title: string;
   toNickname: string;
   message: string;
 }
@@ -31,9 +31,9 @@ const WriteTest = () => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string>('');
   const [coverImgUrl, setCoverImgUrl] = useState<string>('');
   const [coverImgFile, setCoverImgFile] = useState<File>();
-  const [{ singer, songTitle, toNickname, message }, handleChange] = useInputs<IForm>({
+  const [{ singer, title, toNickname, message }, handleChange] = useInputs<IForm>({
     singer: '',
-    songTitle: '',
+    title: '',
     toNickname: '',
     message: '',
   });
@@ -77,18 +77,27 @@ const WriteTest = () => {
 
     const obj = {
       url,
-      thumbnailUrl,
+      // thumbnailUrl,
       singer,
-      songTitle,
-      toNickname,
+      title,
       message,
+      writerNickname: toNickname,
     };
 
     Object.entries(obj).forEach(([key, value]) => {
       newFormData.append(`${key}`, value);
     });
 
-    newFormData.append('coverImgFile', coverImgFile as File);
+    newFormData.append('imgFile', coverImgFile as File);
+
+    axios
+      .post('https://lp.weareboard.kr/api/v1/lp', newFormData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(e => console.log(e));
   };
 
   return (
@@ -118,15 +127,13 @@ const WriteTest = () => {
         <p>가수이름 </p>
         <input type="text" name="singer" onChange={handleChange} value={singer} />
         <p>노래 제목 </p>
-        <input type="text" name="songTitle" onChange={handleChange} value={songTitle} />
+        <input type="text" name="title" onChange={handleChange} value={title} />
         <p>닉네임 </p>
         <input type="text" name="toNickname" onChange={handleChange} value={toNickname} />
         <p>메시지 </p>
         <input type="text" name="message" onChange={handleChange} value={message} />
         <div>
-          <button onClick={() => console.log(singer, songTitle, toNickname, message)}>
-            콘솔 확인
-          </button>
+          <button onClick={() => console.log(singer, title, toNickname, message)}>콘솔 확인</button>
           <button type="submit">제출하기</button>
         </div>
       </form>

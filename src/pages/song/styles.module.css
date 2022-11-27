@@ -1,0 +1,32 @@
+.container {
+  width: 448px;
+  height: 100vh;
+  min-height: 800px;
+  text-align: center;
+  margin: 0 auto;
+  background: linear-gradient(#1b2125, #4d545f);
+}
+
+.to_nickname {
+  font-size: 18px;
+  color: #d9d9d9;
+}
+
+.song_title {
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.singer {
+  font-size: 20px;
+  color: #b3b3b3;
+}
+
+.message {
+  width: 384px;
+  height: 241px;
+  margin: 30px auto 60px;
+  padding: 16px;
+  background-color: #b3b3b3;
+  color: #d9d9d9;
+}
