@@ -16,7 +16,7 @@ const NewArriveModal = () => {
       </div>
 
       <div className={styles.envelopWrapper}>
-        <Image src="/images/envelop_back.svg" width="352" height="318" alt="envelope_back" />
+        <Image src="/images/envelop_back.svg" width="352" height="400" alt="envelope_back" />
         <div className={styles.lpWrapper}>
           <Lp animation="upDown" />
         </div>
