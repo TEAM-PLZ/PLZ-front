@@ -1,15 +1,25 @@
+import Lp from 'components/Lp';
+import NewArriveModal from 'components/NewArriveModal';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import styles from './login.module.css';
 
 const Login = () => {
+  const router = useRouter();
+
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
-    popup?.addEventListener('beforeunload', () => {
-      if (localStorage.getItem('isFirst')) {
-      }
+
+    popup?.addEventListener('beforeunload', function () {
+      sendPage(!!localStorage.getItem('isFirst'));
     });
+  };
+
+  const sendPage = (isFirst: boolean) => {
+    const sendPage = isFirst ? '/onBoarding' : '/main';
+    router.push(sendPage);
   };
 
   return (
@@ -19,9 +29,7 @@ const Login = () => {
         <Image src="/icons/logo_lg.svg" width="82" height="61" alt="logo" />
       </div>
       <div className={styles.lpWrapper}>
-        <Image src="/images/lp_black.svg" width="248" height="248" alt="lp_black" />
-        <Image src="/images/lp_image.png" width="86" height="86" alt="lp_image" />
-        <Image src="/images/lp_middle.svg" width="12" height="12" alt="lp_middle" />
+        <Lp animation='rotate'/>
       </div>
       <div className={styles.bottomWrapper}>
         <Image src="/images/message.svg" width="301" height="76" alt="message" />
