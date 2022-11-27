@@ -29,7 +29,7 @@ const Login = () => {
         <Image src="/icons/logo_lg.svg" width="82" height="61" alt="logo" />
       </div>
       <div className={styles.lpWrapper}>
-        <Lp animation='rotate'/>
+        <Lp animation="rotate" />
       </div>
       <div className={styles.bottomWrapper}>
         <Image src="/images/message.svg" width="301" height="76" alt="message" />

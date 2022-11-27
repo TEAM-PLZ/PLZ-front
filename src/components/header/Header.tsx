@@ -9,9 +9,22 @@ const Header = () => {
         <span>내 플리를 부탁해,</span>
         <Image src="/icons/logo.svg" width="50" height="45" alt="logo" />
       </div>
+
       <div className={styles.icons}>
-        <Image src="/icons/alarm.svg" width="24" height="24" alt="alarm_icon" />
-        <Image src="/icons/hamburger.svg" width="24" height="24" alt="menu_icon" />
+        <Image
+          src="/icons/alarm.svg"
+          width={0}
+          height={0}
+          className="w-full h-auto"
+          alt="alarm_icon"
+        />
+        <Image
+          src="/icons/hamburger.svg"
+          width={0}
+          height={0}
+          className="w-full h-auto"
+          alt="menu_icon"
+        />
       </div>
     </div>
   );

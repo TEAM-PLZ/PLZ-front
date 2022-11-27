@@ -19,6 +19,27 @@
   font-size: 48px;
 }
 
+.envelopEffect {
+  animation: blink 0.5s ease-in-out infinite alternate;
+}
+
+.envelopWrapper {
+  margin: 140px;
+  position: relative;
+}
+
+.envelopWrapper img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: inherit;
+  max-width: inherit;
+}
+
+.envelopWrapper img:nth-last-of-type(1) {
+  top: -30px;
+}
+
 .button {
   margin-top: 50px;
   width: 250px;
@@ -28,4 +49,13 @@
   font-size: 28px;
   color: black;
   font-family: Cafe24Shiningstar;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

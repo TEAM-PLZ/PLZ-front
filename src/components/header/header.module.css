@@ -12,8 +12,11 @@
 
 .logos > span {
   margin-right: 4px;
+  font-family: SF_HambakSnow;
 }
-
+.icons {
+  @apply flex;
+}
 .icons > img:first-child {
-  margin-right: 21px;
+  margin-right: 18px;
 }
