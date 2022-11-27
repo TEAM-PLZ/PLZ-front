@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { cookies } from 'utils/cookie';
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -11,7 +12,7 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config: any) => {
-  const token = localStorage.getItem('token');
+  const token = cookies.get('token');
   if (config && token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
