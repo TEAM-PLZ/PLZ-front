@@ -2,22 +2,9 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import axios from 'axios';
 import useInputs from 'hooks/useInputs';
-
-interface IYoutube {
-  author_name: string;
-  author_url: string;
-  height: number;
-  html: string;
-  provider_name: string;
-  provider_url: string;
-  thumbnail_height: number;
-  thumbnail_url: string;
-  thumbnail_width: number;
-  title: string;
-  type: string;
-  version: string;
-  width: number;
-}
+import { IYoutube } from 'types';
+import setThumbnailFileName from 'utils/setThumbnailFileName';
+import { sendAlbum } from 'services/album';
 
 interface IForm {
   singer: string;
@@ -38,17 +25,11 @@ const WriteTest = () => {
     message: '',
   });
 
-  const changeFileName = (url: string) => {
-    let a = url.split('/');
-    a[a.length - 1] = 'maxresdefault.jpg';
-    return a.join('/');
-  };
-
   const getYoutubeData = async (url: string) => {
     if (!url) return;
     try {
       const result = await axios.get<IYoutube>(`https://www.youtube.com/oembed?url=${url}`);
-      setThumbnailUrl(changeFileName(result.data.thumbnail_url));
+      setThumbnailUrl(setThumbnailFileName(result.data.thumbnail_url));
     } catch (e) {
       // 에러 스낵바 생성
       console.log(e);
@@ -77,7 +58,7 @@ const WriteTest = () => {
 
     const obj = {
       url,
-      // thumbnailUrl,
+      thumbnailUrl,
       singer,
       title,
       message,
@@ -90,13 +71,8 @@ const WriteTest = () => {
 
     newFormData.append('imgFile', coverImgFile as File);
 
-    axios
-      .post('https://lp.weareboard.kr/api/v1/lp', newFormData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .then(res => {
-        console.log(res);
-      })
+    sendAlbum(newFormData)
+      .then(res => console.log(res))
       .catch(e => console.log(e));
   };
 

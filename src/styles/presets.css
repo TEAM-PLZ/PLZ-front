@@ -38,22 +38,38 @@
   font-size: 18px;
 }
 
+.note {
+  font-family: Cafe24Oneprettynight;
+  line-height: 1.4;
+  letter-spacing: -0.56px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.bar1 {
+  font-family: 'PretendardMedium';
+  line-height: 1.4;
+  letter-spacing: -0.28px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
 @font-face {
   font-family: 'SF_HambakSnow';
-  src: url('/public/fonts/SFHambakSnow.ttf');
+  src: url('/fonts/SFHambakSnow.ttf');
 }
 
 @font-face {
   font-family: 'Cafe24Shiningstar';
-  src: url('/public/fonts/Cafe24Shiningstar.ttf');
+  src: url('/fonts/Cafe24Shiningstar.ttf');
 }
 
 @font-face {
   font-family: 'Cafe24Oneprettynight';
-  src: url('/public/fonts/Cafe24Oneprettynight.ttf');
+  src: url('/fonts/Cafe24Oneprettynight.ttf');
 }
 
 @font-face {
   font-family: 'PretendardMedium';
-  src: url('/public/fonts/PretendardMedium.otf');
+  src: url('/fonts/PretendardMedium.otf');
 }

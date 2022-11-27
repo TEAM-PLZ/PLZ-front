@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import YouTube, { YouTubePlayer, YouTubeEvent } from 'react-youtube';
+import { useRecoilState } from 'recoil';
+import { playState } from 'stores/song';
 import styles from './index.module.css';
 import ProgressBar from './ProgressBar';
 
@@ -10,7 +12,7 @@ interface IPlayer {
 const Player = ({ videoId }: IPlayer) => {
   const [youtube, setYoutube] = useState<YouTubePlayer>();
   const [duration, setDuration] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useRecoilState<boolean>(playState);
   const [curTime, setCurTime] = useState(0);
 
   let timeInterval: any;
@@ -19,9 +21,9 @@ const Player = ({ videoId }: IPlayer) => {
       setCurTime(youtube.getCurrentTime());
     }, 300);
   };
-  // 다음 앨범
+
   const onPrevAlbum = () => {};
-  // 이전 앨범
+
   const onNextAlbum = () => {};
 
   const onPlay = () => {
@@ -55,7 +57,10 @@ const Player = ({ videoId }: IPlayer) => {
         onStateChange={(event: YouTubeEvent) => {
           event.data === 1 ? startInterval() : clearInterval(timeInterval);
         }}
-        onEnd={(event: YouTubeEvent) => event.target.stopVideo(0)}
+        onEnd={(event: YouTubeEvent) => {
+          event.target.stopVideo(0);
+          setIsPlaying(false);
+        }}
       />
       <section className={styles.player}>
         {youtube && <ProgressBar curTime={curTime} duration={duration} />}

@@ -12,7 +12,7 @@ const ProgressBar = ({ curTime, duration }: IProps) => {
         id="fill"
         className={styles.fill_bar}
         style={{ width: (curTime / duration) * 100 + '%' }}
-      ></div>
+      />
     </div>
   );
 };
