@@ -1,19 +1,15 @@
 .container {
-  height: 82px;
-  padding: 18px 30px 19px;
-  @apply flex justify-between items-center;
+  @apply h-[82px] py-[27px] px-[30px] flex justify-between items-center;
 }
 
 .logos {
-  font-size: 20px;
-  font-weight: 800;
-  @apply flex items-center;
+  @apply flex items-center select-none;
 }
 
-.logos > span {
-  margin-right: 4px;
+.logo {
+  @apply mr-[4px] text-[20px];
 }
 
-.icons > img:first-child {
-  margin-right: 21px;
+.icons {
+  @apply flex cursor-pointer;
 }

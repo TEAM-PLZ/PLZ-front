@@ -2,26 +2,13 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import axios from 'axios';
 import useInputs from 'hooks/useInputs';
-
-interface IYoutube {
-  author_name: string;
-  author_url: string;
-  height: number;
-  html: string;
-  provider_name: string;
-  provider_url: string;
-  thumbnail_height: number;
-  thumbnail_url: string;
-  thumbnail_width: number;
-  title: string;
-  type: string;
-  version: string;
-  width: number;
-}
+import { IYoutube } from 'types';
+import setThumbnailFileName from 'utils/setThumbnailFileName';
+import { sendAlbum } from 'services/album';
 
 interface IForm {
   singer: string;
-  songTitle: string;
+  title: string;
   toNickname: string;
   message: string;
 }
@@ -31,24 +18,18 @@ const WriteTest = () => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string>('');
   const [coverImgUrl, setCoverImgUrl] = useState<string>('');
   const [coverImgFile, setCoverImgFile] = useState<File>();
-  const [{ singer, songTitle, toNickname, message }, handleChange] = useInputs<IForm>({
+  const [{ singer, title, toNickname, message }, handleChange] = useInputs<IForm>({
     singer: '',
-    songTitle: '',
+    title: '',
     toNickname: '',
     message: '',
   });
-
-  const changeFileName = (url: string) => {
-    let a = url.split('/');
-    a[a.length - 1] = 'maxresdefault.jpg';
-    return a.join('/');
-  };
 
   const getYoutubeData = async (url: string) => {
     if (!url) return;
     try {
       const result = await axios.get<IYoutube>(`https://www.youtube.com/oembed?url=${url}`);
-      setThumbnailUrl(changeFileName(result.data.thumbnail_url));
+      setThumbnailUrl(setThumbnailFileName(result.data.thumbnail_url));
     } catch (e) {
       // 에러 스낵바 생성
       console.log(e);
@@ -79,16 +60,20 @@ const WriteTest = () => {
       url,
       thumbnailUrl,
       singer,
-      songTitle,
-      toNickname,
+      title,
       message,
+      writerNickname: toNickname,
     };
 
     Object.entries(obj).forEach(([key, value]) => {
       newFormData.append(`${key}`, value);
     });
 
-    newFormData.append('coverImgFile', coverImgFile as File);
+    newFormData.append('imgFile', coverImgFile as File);
+
+    sendAlbum(newFormData)
+      .then(res => console.log(res))
+      .catch(e => console.log(e));
   };
 
   return (
@@ -118,15 +103,13 @@ const WriteTest = () => {
         <p>가수이름 </p>
         <input type="text" name="singer" onChange={handleChange} value={singer} />
         <p>노래 제목 </p>
-        <input type="text" name="songTitle" onChange={handleChange} value={songTitle} />
+        <input type="text" name="title" onChange={handleChange} value={title} />
         <p>닉네임 </p>
         <input type="text" name="toNickname" onChange={handleChange} value={toNickname} />
         <p>메시지 </p>
         <input type="text" name="message" onChange={handleChange} value={message} />
         <div>
-          <button onClick={() => console.log(singer, songTitle, toNickname, message)}>
-            콘솔 확인
-          </button>
+          <button onClick={() => console.log(singer, title, toNickname, message)}>콘솔 확인</button>
           <button type="submit">제출하기</button>
         </div>
       </form>

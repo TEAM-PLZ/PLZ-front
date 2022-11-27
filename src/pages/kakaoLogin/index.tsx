@@ -1,8 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { checkUser } from 'services/auth';
-import { testStore } from 'stores/test';
 
 interface Props {
   token: string;
@@ -35,6 +33,7 @@ export default KakaoAuth;
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { token } = query;
+
   return {
     props: { token },
   };
