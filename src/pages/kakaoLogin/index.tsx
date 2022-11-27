@@ -32,6 +32,7 @@ export default KakaoAuth;
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { token } = query;
+
   return {
     props: { token },
   };

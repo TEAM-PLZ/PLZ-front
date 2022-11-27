@@ -38,6 +38,22 @@
   font-size: 18px;
 }
 
+.note {
+  font-family: Cafe24Oneprettynight;
+  line-height: 1.4;
+  letter-spacing: -0.56px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.bar1 {
+  font-family: 'PretendardMedium';
+  line-height: 1.4;
+  letter-spacing: -0.28px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
 @font-face {
   font-family: 'SF_HambakSnow';
   src: url('/fonts/SFHambakSnow.ttf');
