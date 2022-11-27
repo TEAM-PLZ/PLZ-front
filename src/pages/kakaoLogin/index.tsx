@@ -1,18 +1,10 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { checkUser } from 'services/auth';
-import { testStore } from 'stores/test';
+import type { IResCheckUser } from 'types/login';
 
 interface Props {
   token: string;
-}
-
-interface IResCheckUser {
-  id: number;
-  name: string;
-  role: string;
-  isFirst?: boolean;
 }
 
 const KakaoAuth: NextPage<Props> = props => {
@@ -20,11 +12,10 @@ const KakaoAuth: NextPage<Props> = props => {
     localStorage.setItem('token', props.token);
     const result: IResCheckUser = await checkUser<IResCheckUser>();
     if (result?.isFirst) {
-      localStorage.setItem('isFirst', String(result?.isFirst));
+      localStorage.setItem('isFirst', String(result.isFirst));
     } else {
       localStorage.removeItem('isFirst');
     }
-
     window.self.close();
   };
 

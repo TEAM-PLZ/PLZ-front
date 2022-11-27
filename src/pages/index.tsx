@@ -28,7 +28,7 @@ const Login = () => {
       </div>
       <div className={styles.lpWrapper}>
         <div className={styles.lpShadow}>
-          <Image src="/images/lp_shadow.svg" width="248" height="248" alt="lp_black" />
+          <Image src="/images/lp_shadow.svg" width="248" height="248" alt="lp_shadow" />
         </div>
         <div className={styles.lp}>
           <Image src="/images/lp_black.svg" width="248" height="248" alt="lp_black" />
