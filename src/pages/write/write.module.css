@@ -1,0 +1,15 @@
+.container {
+  @apply max-w-[448px] w-full h-screen text-white text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f];
+}
+
+.input_url {
+  @apply w-[384px] h-[56px] mt-[30px] p-[13px] bg-[#484d54] text-white;
+}
+
+.input_url::placeholder {
+  @apply text-white text-center;
+}
+
+.button_url {
+  @apply flex items-center text-black mt-[30px] m-auto px-[36px] py-[11px] bg-white rounded-[12px];
+}
