@@ -1,4 +1,5 @@
 .container {
+  height: 82px;
   padding: 18px 30px 19px;
   @apply flex justify-between items-center;
 }

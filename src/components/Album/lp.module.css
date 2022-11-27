@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+}
+
+.lpBlack,
+.lpImage,
+.lpMiddle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.lpImage {
+  border-radius: 50%;
+  object-fit: cover;
+}

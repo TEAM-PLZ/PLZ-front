@@ -1,0 +1,11 @@
+
+.newIcon {
+  width: 43px;
+  height: 23px;
+  border-radius: 4px;
+  background-image: linear-gradient(to bottom, #c68bdb 0%, #4122ff 100%);
+  color: white;
+  font-family: Cafe24Shiningstar;
+  font-size: 18px;
+  @apply flex items-center justify-center;
+}
