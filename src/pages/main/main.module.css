@@ -2,9 +2,11 @@
   background-image: linear-gradient(to bottom, #fff 0%, #6566b3 100%);
   min-height: 100vh;
 }
+
 .headline {
   padding: 0 30px;
 }
+
 .headline > span:nth-of-type(1) {
   background-image: linear-gradient(to bottom, #ab7bd1 0%, #9075ca 35%, #4877c2 100%);
   font-family: SF_HambakSnow;
@@ -14,7 +16,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  @apply font-extrabold;
 }
 
 .headline > span:nth-of-type(2) {

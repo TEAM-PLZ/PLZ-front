@@ -3,8 +3,7 @@ import Image from 'next/image';
 import getVideoId from 'utils/getVideoId';
 import styles from './styles.module.css';
 import Player from 'components/Player';
-import Header from 'components/header/Header';
-import axios from 'axios';
+import Header from 'components/Header';
 import { IAlbum } from 'types';
 import { useRecoilValue } from 'recoil';
 import { playState } from 'stores/song';
@@ -61,9 +60,10 @@ const DetailPage = ({ data }: IAlbum) => {
 
 export default DetailPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   const { id } = query;
-
+  const cookie = req ? req.headers.cookie : '';
+  console.log(cookie,'쿠키')
   try {
     const data = await getAlbum(id);
 

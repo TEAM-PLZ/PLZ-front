@@ -1,25 +1,24 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import { checkUser } from 'services/auth';
+import { setCookie } from 'cookies-next';
+import type { IResCheckUser } from 'types/login';
 
 interface Props {
   token: string;
 }
 
-interface IResCheckUser {
-  id: number;
-  name: string;
-  role: string;
-  isFirst?: boolean;
-}
+const COOKIE_OPTIONS = { path: '/', maxAge: 28800 }; // 8H
 
 const KakaoAuth: NextPage<Props> = props => {
   const getToken = async () => {
-    localStorage.setItem('token', props.token);
+    setCookie('token', props.token, COOKIE_OPTIONS);
     const result: IResCheckUser = await checkUser<IResCheckUser>();
-    localStorage.setItem('isFirst', String(result?.isFirst || false));
-
-    // 만약 한 사람이 온보딩을 안 보고 두 번 로그인 한다면?
+    if (result?.isFirst) {
+      localStorage.setItem('isFirst', String(result.isFirst));
+    } else {
+      localStorage.removeItem('isFirst');
+    }
     window.self.close();
   };
 
