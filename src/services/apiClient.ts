@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { cookies } from 'utils/cookie';
-
+import { getCookie } from 'cookies-next';
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const apiClient = axios.create({
@@ -12,7 +11,7 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config: any) => {
-  const token = cookies.get('token');
+  const token = getCookie('token');
   if (config && token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
