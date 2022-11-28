@@ -1,13 +1,13 @@
 import apiClient from './apiClient';
 
-export const checkUser = <T>() => {
-  return apiClient<any, T>({
+export const checkUser = async <T>() => {
+  return apiClient<unknown, T>({
     method: 'get',
     url: '/api/v1/user',
   });
 };
 
-export const logoutKaKao = () => {
+export const logoutKaKao = async () => {
   return apiClient({
     method: 'post',
     url: '/api/auth/kakao/logout',

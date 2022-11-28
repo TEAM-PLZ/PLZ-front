@@ -59,7 +59,7 @@
   cursor: pointer;
   border-radius: 12px;
   margin: 50px auto 0 auto;
-  @apply flex justify-center items-center;
+  @apply flex items-center justify-center;
 }
 
 .kakaoButton img {

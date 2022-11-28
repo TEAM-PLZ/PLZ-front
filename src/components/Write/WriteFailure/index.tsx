@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { getCookie } from 'cookies-next';
 import LpCover from 'components/LpCover';
-import styles from './writeFailure.module.css';
 import { useSetRecoilState } from 'recoil';
 import submitStatusState from 'stores/write';
+import styles from './writeFailure.module.css';
 
 interface IWriteFailure {
   coverImgPath: string;
@@ -17,18 +17,18 @@ const WriteFailure = ({ coverImgPath, thumbnailImgPath }: IWriteFailure) => {
   const token = getCookie('token');
   const setSubmitStatus = useSetRecoilState(submitStatusState);
 
+  const sendPage = (isFirst: boolean) => {
+    const path = isFirst ? '/onBoarding' : '/main';
+    router.push(path).then(() => setSubmitStatus(''));
+  };
+
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
 
-    popup?.addEventListener('beforeunload', function () {
+    popup?.addEventListener('beforeunload', () => {
       sendPage(!!localStorage.getItem('isFirst'));
     });
-  };
-
-  const sendPage = (isFirst: boolean) => {
-    const sendPage = isFirst ? '/onBoarding' : '/main';
-    router.push(sendPage).then(() => setSubmitStatus(''));
   };
 
   const returnToWrite = () => {
@@ -38,13 +38,13 @@ const WriteFailure = ({ coverImgPath, thumbnailImgPath }: IWriteFailure) => {
   return (
     <div className="h-screen py-[220px] overflow-y-scroll">
       <div className="flex items-center justify-center gap-2.5 mb-4">
-        <Image src={'/icons/tear_left.svg'} width={24} height={24} alt="tear_left" />
-        <Image src={'/icons/heart_failure.svg'} width={64} height={64} alt="heart_failure" />
-        <Image src={'/icons/tear_right.svg'} width={24} height={24} alt="tear_right" />
+        <Image src="/icons/tear_left.svg" width={24} height={24} alt="tear_left" />
+        <Image src="/icons/heart_failure.svg" width={64} height={64} alt="heart_failure" />
+        <Image src="/icons/tear_right.svg" width={24} height={24} alt="tear_right" />
       </div>
       <div className="heading1 mb-[70px]">
         <p>메시지 플리 전송이</p>
-        <p>{`이루어지지 않았어요 :(`}</p>
+        <p>이루어지지 않았어요 :(</p>
       </div>
       <div className="body1 mb-[30px]">
         <p>오류로 인한 전송 실패</p>

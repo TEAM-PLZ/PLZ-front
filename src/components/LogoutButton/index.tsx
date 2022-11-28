@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { deleteCookie } from 'cookies-next';
 import { logoutKaKao } from 'services/auth';
-import { TPage } from '.';
+import { TPage } from 'components/Header/type';
 
 interface IProps {
   page: TPage;
@@ -22,7 +22,7 @@ const LogoutButton = ({ page }: IProps) => {
   };
 
   return (
-    <button onClick={onClick}>
+    <button type="button" onClick={onClick}>
       <Image
         src={page === 'home' ? '/icons/logout.svg' : '/icons/white_logout.svg'}
         width="24"

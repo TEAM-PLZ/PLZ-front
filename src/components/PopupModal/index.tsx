@@ -1,6 +1,6 @@
 import Image from 'next/image';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import styles from './PopupModal.module.css';
-import { useState, Dispatch, SetStateAction, useEffect } from 'react';
 
 interface IPopupList {
   status: string;
@@ -30,13 +30,13 @@ const PopupModal = ({ popup, setPopup }: IPopupModal) => {
   return (
     <div className={`${styles.popup_modal}`}>
       <Image
-        src={iconSrc ? iconSrc : ''}
+        src={iconSrc || ''}
         width="28"
         height="28"
         alt="popup_icon"
         className="m-auto mb-[8px]"
       />
-      <p className="bar2 m-auto whitespace-pre-wrap text-center">{popup.message}</p>
+      <p className="m-auto text-center whitespace-pre-wrap bar2">{popup.message}</p>
     </div>
   );
 };

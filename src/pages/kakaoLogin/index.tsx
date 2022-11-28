@@ -4,15 +4,15 @@ import { checkUser } from 'services/auth';
 import { setCookie } from 'cookies-next';
 import type { IResCheckUser } from 'types/login';
 
-interface Props {
+interface IProps {
   token: string;
 }
 
 const COOKIE_OPTIONS = { path: '/', maxAge: 28800 }; // 8H
 
-const KakaoAuth: NextPage<Props> = props => {
+const KakaoAuth: NextPage<IProps> = ({ token }: IProps) => {
   const getToken = async () => {
-    setCookie('token', props.token, COOKIE_OPTIONS);
+    setCookie('token', token, COOKIE_OPTIONS);
     const result: IResCheckUser = await checkUser<IResCheckUser>();
     if (result?.isFirst) {
       localStorage.setItem('isFirst', String(result.isFirst));

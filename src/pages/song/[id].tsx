@@ -1,12 +1,13 @@
+/* eslint-disable no-nested-ternary */
 import { GetServerSideProps } from 'next/types';
 import Image from 'next/image';
 import getVideoId from 'utils/getVideoId';
-import styles from './styles.module.css';
 import Player from 'components/Player';
 import Header from 'components/Header';
 import LpCover from 'components/LpCover';
 import { IAlbum } from 'types';
 import { getAlbum } from 'services/album';
+import styles from './styles.module.css';
 
 const coverImgSize = 'w-[264px] h-[264px] max-[375px]:w-[180px] max-[375px]:h-[180px]';
 const thumbnailImgSize = 'w-[86px] h-[86px] max-[375px]:w-[65px] max-[375px]:h-[65px]';
@@ -46,7 +47,7 @@ const DetailPage = ({ data }: IProps) => {
       <div className={`note ${styles.message_container}`}>
         <div className="w-full h-full overflow-y-scroll">{data.message}</div>
         <Image
-          src={'/images/sticker.png'}
+          src="/images/sticker.png"
           width={140}
           height={48}
           alt="sticker"
