@@ -1,4 +1,4 @@
-export interface IResCheckUser {
+export interface IUserInfo {
   id: number;
   name: string;
   role: string;

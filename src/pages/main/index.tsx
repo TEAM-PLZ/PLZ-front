@@ -11,8 +11,10 @@ import PopupModal from 'components/PopupModal';
 import useCopyClipBoard from 'hooks/useCopyClipBoard';
 import { getAlbumList } from 'services/album';
 import { IAlbum } from 'types/index';
-import mockData from './mock';
+import { IUserInfo } from 'types/login';
+import { checkUser } from 'services/auth';
 import styles from './main.module.css';
+import mockData from './mock';
 
 const getDividedArray = (array: any[], n: number) => {
   const newArray = [];
@@ -25,9 +27,10 @@ const getDividedArray = (array: any[], n: number) => {
 
 interface IProps {
   data: IAlbum[];
+  userInfo: IUserInfo;
 }
 
-const Main = ({ data }: IProps) => {
+const Main = ({ data, userInfo }: IProps) => {
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -41,7 +44,7 @@ const Main = ({ data }: IProps) => {
 
   const onClickShareBtn = async () => {
     try {
-      await onCopy('복사가 되는지 확인해보자');
+      await onCopy(`write주소/${userInfo.id}`);
       setPopup({ status: 'success', message: '복사되었습니다' });
     } catch {
       setPopup({ status: 'error', message: '다시 시도해주세요' });
@@ -89,8 +92,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 
   try {
-    const data = await getAlbumList();
-    return { props: { data } };
+    const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
+    return { props: { data, userInfo } };
   } catch (e) {
     return { notFound: true };
   }
