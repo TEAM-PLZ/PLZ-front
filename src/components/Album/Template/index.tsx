@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import Album from './Album';
-import { Dummy } from './type';
+import Album from '..';
+import { Dummy } from '../type';
 import styles from './template.module.css';
 
 interface TemplateProps {
