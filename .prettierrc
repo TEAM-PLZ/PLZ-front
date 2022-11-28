@@ -1,10 +1,10 @@
 {
-  "printWidth": 100, 
-  "semi": true, 
-  "singleQuote": true, 
-  "trailingComma": "all", 
+  "printWidth": 100,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
   "tabWidth": 2,
-  "bracketSpacing": true, 
+  "bracketSpacing": true,
   "endOfLine": "auto",
   "useTabs": false,
   "arrowParens": "avoid",
@@ -18,10 +18,9 @@
     "^(types).*",
     "^(stores).*",
     "^.*",
-    "^[.].*/.*", 
+    "^[.].*/.*",
     ".*"
- ],
- "importOrderSeparation": true,
- "importOrderSortSpecifiers": true
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
-

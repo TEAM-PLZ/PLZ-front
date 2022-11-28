@@ -1,8 +1,8 @@
-import Header from 'components/header/Header';
+import Header from 'components/Header';
 import NewArriveModal from 'components/NewArriveModal';
 import styles from './main.module.css';
 import { Dummy } from 'components/Album/type';
-import Template from 'components/Album/template';
+import Template from 'components/Album/Template';
 
 const Main = () => {
   const dummy: Dummy[] = [

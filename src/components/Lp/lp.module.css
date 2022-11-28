@@ -26,6 +26,8 @@
   position: absolute;
   top: -112px;
   left: -81px;
+  height: inherit;
+  max-width: inherit;
 }
 
 @keyframes rotate {

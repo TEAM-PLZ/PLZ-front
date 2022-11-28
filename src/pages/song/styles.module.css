@@ -1,0 +1,68 @@
+.container {
+  @apply max-w-[448px] w-full h-screen text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f] overflow-x-hidden;
+}
+
+.to_nickname {
+  @apply text-[#d9d9d9] mb-[16px];
+}
+
+.lp_section {
+  @apply mb-[42px] max-[425px]:mb-1;
+}
+
+.message_container {
+  @apply w-[90%] h-[241px] p-[16px] mt-[30px] mb-[60px] mx-auto bg-messageBackground bg-cover bg-center text-[#1B2125] break-all text-left leading-[150%] relative;
+}
+
+.message_sticker {
+  @apply absolute -right-10 -bottom-10;
+}
+
+.lp_cover {
+  @apply absolute w-[248px] h-[248px] z-[4] -left-16 max-[375px]:-left-6 max-[375px]:w-[180px] max-[375px]:h-[180px];
+}
+
+.lp_wrapper {
+  @apply w-[248px] h-[248px] flex justify-center items-center relative z-[3] left-24 max-[375px]:w-[180px] max-[375px]:h-[180px];
+}
+
+.center {
+  @apply w-[12px] h-[12px] absolute z-[3];
+}
+
+.image {
+  @apply w-[86px] h-[86px] absolute z-[2];
+}
+
+.outline {
+  @apply w-[210px] h-[210px] absolute max-[375px]:w-[180px] max-[375px]:h-[180px];
+}
+
+.rotate {
+  animation: rotateImage 6s linear infinite;
+}
+
+.rotate__running {
+  animation-play-state: running;
+}
+
+.rotate__paused {
+  animation-play-state: paused;
+}
+
+@keyframes rotateImage {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.title {
+  @apply text-white;
+}
+
+.singer {
+  @apply text-[#b3b3b3];
+}
