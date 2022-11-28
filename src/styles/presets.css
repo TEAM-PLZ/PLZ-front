@@ -41,7 +41,7 @@
 .note {
   font-family: Cafe24Oneprettynight;
   line-height: 1.4;
-  letter-spacing: -0.56px;
+  letter-spacing: -0.36px;
   font-weight: 400;
   font-size: 18px;
 }
@@ -49,9 +49,17 @@
 .bar1 {
   font-family: 'PretendardMedium';
   line-height: 1.4;
-  letter-spacing: -0.28px;
+  letter-spacing: -0.2px;
   font-weight: 400;
   font-size: 20px;
+}
+
+.bar2 {
+  font-family: 'PretendardRegular';
+  line-height: 1.2;
+  letter-spacing: -0.07px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 @font-face {
@@ -72,4 +80,9 @@
 @font-face {
   font-family: 'PretendardMedium';
   src: url('/fonts/PretendardMedium.otf');
+}
+
+@font-face {
+  font-family: 'PretendardRegular';
+  src: url('/fonts/PretendardRegular.otf');
 }

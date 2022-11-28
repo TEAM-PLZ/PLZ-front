@@ -1,0 +1,39 @@
+.container {
+  @apply max-w-[448px] w-full h-auto text-white text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f] overflow-x-hidden;
+}
+
+.title_text {
+  @apply whitespace-pre-line mb-[40px];
+}
+
+.input_url {
+  @apply w-[388px] h-[56px] px-[20px] bg-[#373d41] text-white;
+}
+
+.input_url::placeholder {
+  @apply text-[#9b9ea0];
+}
+
+.button_url {
+  @apply flex items-center justify-center w-[188px] h-[46px] mt-[30px] m-auto bg-white text-black;
+}
+
+.button_cover {
+  @apply flex items-center m-auto w-[188px] h-[46px] px-[38px] py-[8px] mb-[14px] bg-white text-black cursor-pointer;
+}
+
+.reciever_nickname {
+  @apply w-[388px] ml-[30px] mb-[30px] pb-[11px] border-b-[1px] border-[#b3b3b3] text-left text-[#b3b3b3];
+}
+
+.message {
+  @apply relative bg-messageBackground w-[388px] h-[286px] mx-auto p-[20px] pt-[58px];
+}
+
+.textarea_message {
+  @apply bg-inherit w-[348px] h-[162px];
+}
+
+.writer_nickname {
+  @apply w-[388px] mx-[30px] mt-[30px] mb-[180px] pb-[11px] border-b-[1px] bg-inherit border-[#b3b3b3] text-right text-[#b3b3b3];
+}

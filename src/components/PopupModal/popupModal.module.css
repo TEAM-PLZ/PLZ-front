@@ -1,0 +1,3 @@
+.popup_modal {
+  @apply fixed top-0 bottom-0 left-0 right-0 m-auto z-[100] w-[122px] h-[106px] pt-[18px] bg-[#3a3a3a] text-[#d9d9d9] rounded-[8px];
+}

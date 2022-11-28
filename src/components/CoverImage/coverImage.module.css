@@ -1,0 +1,21 @@
+.cover_image_filter {
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(225deg, #d9d9d9 0%, rgba(217, 217, 217, 0) 39.58%);
+  filter: drop-shadow(20px 10px 20px rgba(0, 0, 0, 0.15));
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.small {
+  @apply w-[120px] h-[120px];
+}
+
+.medium {
+  @apply w-[264px] h-[264px];
+}
+
+.large {
+  @apply w-[300px] h-[300px];
+}
