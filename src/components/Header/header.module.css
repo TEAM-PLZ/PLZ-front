@@ -10,6 +10,10 @@
   @apply mr-[4px] text-[20px];
 }
 
+.write_title {
+  font-size: 20px;
+}
+
 .icons {
   @apply flex cursor-pointer;
 }
