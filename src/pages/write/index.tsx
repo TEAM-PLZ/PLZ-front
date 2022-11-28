@@ -7,7 +7,6 @@ import setThumbnailFileName from 'utils/setThumbnailFileName';
 import { sendAlbum } from 'services/album';
 import Header from 'components/Header';
 import styles from './write.module.css';
-import SnackBar from 'components/SnackBar';
 import getRandomImage from 'utils/getRandomImage';
 import CoverImage from 'components/CoverImage';
 import PopupModal from 'components/PopupModal';
@@ -20,10 +19,9 @@ interface IForm {
   message: string;
 }
 
-interface ISnackBarList {
-  status: string;
-  message: string;
-}
+type ObjType = {
+  [index: string]: string;
+};
 
 const coverImgSize = 'w-[330px] h-[330px] max-[375px]:w-[180px] max-[375px]:h-[180px]';
 const thumbnailImgSize = 'w-[114.44px] h-[114.44px] max-[375px]:w-[85px] max-[375px]:h-[85px]';
@@ -40,12 +38,7 @@ const Write = () => {
   const [coverImgFile, setCoverImgFile] = useState<File>();
   const [randomImageSrc, setRandomImageSrc] = useState<string>('/images/image1.png');
   const [popup, setPopup] = useState({ status: '', message: '' });
-
-  const [snackBar, setSnackBar] = useState<ISnackBarList>({
-    status: '',
-    message: '',
-  });
-  const [{ singer, title, writerNickname, message }, handleChange] = useInputs<IForm>({
+  const [{ singer, title, writerNickname, message }, handleChange, setForm] = useInputs<IForm>({
     singer: '',
     title: '',
     writerNickname: '',
@@ -57,9 +50,11 @@ const Write = () => {
     try {
       const result = await axios.get<IYoutube>(`https://www.youtube.com/oembed?url=${url}`);
       setThumbnailUrl(setThumbnailFileName(result.data.thumbnail_url));
-      setPopup({ status: 'done', message: `링크가\n확인되었습니다` });
+      setPopup({ status: 'success', message: `링크가\n확인되었습니다` });
     } catch (e) {
       setPopup({ status: 'error', message: `링크를\n불러올 수 없습니다` });
+      setUrl('');
+      setThumbnailUrl('');
     }
   };
 
@@ -82,6 +77,20 @@ const Write = () => {
     setCoverImgFile(undefined);
   };
 
+  const onRefreshClick = () => {
+    setRandomImageSrc('/images/image1.png');
+    setCoverImgUrl('');
+    setThumbnailUrl('');
+    setCoverImgFile(undefined);
+    setUrl('');
+    setForm({
+      singer: '',
+      title: '',
+      writerNickname: '',
+      message: '',
+    });
+  };
+
   const handleSubmitYoutubeLink = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getYoutubeData(url);
@@ -90,20 +99,32 @@ const Write = () => {
   const handleSubmitFormData = () => {
     const newFormData = new FormData();
 
-    const obj = {
+    const obj: ObjType = {
+      url,
+      singer,
+      title,
       message,
+      writerNickname,
       randomCoverPath: randomImageSrc,
       receiverId: '3',
-      singer,
       thumbnailImgPath: thumbnailUrl,
-      title,
-      url,
-      writerNickname: writerNickname,
     };
 
-    Object.entries(obj).forEach(([key, value]) => {
-      newFormData.append(`${key}`, value);
-    });
+    const errorMessage: ObjType = {
+      message: `메시지를\n입력해주세요`,
+      title: `곡 제목을\n입력해주세요`,
+      singer: `가수를\n입력해주세요`,
+      url: `유튜브 링크를\n인증해주세요`,
+      writerNickname: `닉네임을\n입력해주세요`,
+    };
+
+    for (let key in obj) {
+      if (obj[key] === '') {
+        setPopup({ status: 'error', message: errorMessage[key] });
+        return;
+      }
+      newFormData.append(`${key}`, obj[key]);
+    }
 
     if (coverImgFile) newFormData.append('coverImgFile', coverImgFile as File);
 
@@ -122,7 +143,7 @@ const Write = () => {
   return (
     <>
       <div className={styles.container}>
-        <Header page="write" onSubmit={handleSubmitFormData} />
+        <Header page="write" onRefresh={onRefreshClick} />
 
         <h1 className={`heading1 ${styles.title_text}`}>{`먼저 LP에 담을 곡을\n골라보세요`}</h1>
         <form onSubmit={handleSubmitYoutubeLink}>
@@ -154,12 +175,22 @@ const Write = () => {
             lpSize={lpSize}
           />
         </div>
-        <h1 className="heading1 mb-[8px]">노래 제목</h1>
-        <input type="text" name="title" onChange={handleChange} value={title} />
-        <p className="note text-[#b3b3b3]">아티스트</p>
-        <input type="text" name="singer" onChange={handleChange} value={singer} />
-
-        <div className="mt-[100px]"></div>
+        <input
+          type="text"
+          name="title"
+          onChange={handleChange}
+          value={title}
+          placeholder="곡 제목을 입력해주세요"
+          className={`heading1 mb-[20px] text-white placeholder:text-white ${styles.input_song_detail}`}
+        />
+        <input
+          type="text"
+          name="singer"
+          onChange={handleChange}
+          value={singer}
+          placeholder="아티스트 명을 입력해주세요"
+          className={`note text-[#b3b3b3] mb-[100px] placeholder:text-[#b3b3b3] ${styles.input_song_detail}`}
+        />
         <div>
           <h1 className={`heading1 ${styles.title_text}`}>{`이제 LP 커버를\n만들어볼까요?`}</h1>
 
@@ -201,7 +232,6 @@ const Write = () => {
         <h1
           className={`heading1 mt-[120px] ${styles.title_text}`}
         >{`내 마음을 전할\n 메시지를 작성해보세요`}</h1>
-        <div className={`note ${styles.reciever_nickname}`}>To. {`누구누구`}</div>
         <div className={styles.message}>
           <Image
             src={'/images/bottom_left_sticker.png'}
@@ -217,7 +247,9 @@ const Write = () => {
             alt="top-right-sticker"
             className="absolute top-[-60px] right-[-30px]"
           />
-          <p className="body2 absolute left-[20px] top-[20px] text-[#1b2125]">2022.11.18</p>
+          <p className="body2 absolute left-[20px] top-[20px] text-[#1b2125]">
+            {new Date().toLocaleDateString()}
+          </p>
           <textarea
             name="message"
             onChange={handleChange}
@@ -227,14 +259,21 @@ const Write = () => {
           />
           <p className="note absolute right-[20px] bottom-[20px] text-[#9c9c9c]">{`${message.length}자 / 100자`}</p>
         </div>
-        <input
-          type="text"
-          name="writerNickname"
-          onChange={handleChange}
-          value={writerNickname}
-          placeholder="From. 보내는 사람 닉네임을 입력해주세요."
-          className={`note ${styles.writer_nickname}`}
-        />
+        <div className={`note ${styles.writer_nickname}`}>
+          <label>From.</label>
+          <input
+            type="text"
+            name="writerNickname"
+            onChange={handleChange}
+            value={writerNickname}
+            placeholder="보내는 사람 닉네임을 입력해주세요."
+            className={` ${styles.input_writer_nickname}`}
+          />
+        </div>
+      </div>
+      <div className={`body1 ${styles.send_album}`} onClick={handleSubmitFormData}>
+        메시지 플리 보내기
+        <Image src="/icons/letter.svg" width="28" height="28" alt="letter" className="ml-[8px]" />
       </div>
       {popup.status && <PopupModal popup={popup} setPopup={setPopup} />}
     </>

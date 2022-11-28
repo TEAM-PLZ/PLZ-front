@@ -53,7 +53,13 @@ const LpCover = ({
             isPlaying ? styles.rotate__running : styles.rotate__paused
           } ${thumbnailImgSize}`}
         >
-          <Image src={thumbnailImgPath} fill sizes="100%" alt="image" className="rounded-full" />
+          <Image
+            src={thumbnailImgPath}
+            fill
+            sizes="100%"
+            alt="image"
+            className="rounded-full object-cover"
+          />
         </div>
         <div className={`${styles.center} ${lpSize.center}`}>
           <Image src={'/images/lp_center.png'} fill sizes="100%" alt="center" />
