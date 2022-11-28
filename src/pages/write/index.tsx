@@ -98,16 +98,20 @@ const Write = () => {
 
     sendAlbum(newFormData)
       .then(res => {
+        // 성공 페이지
         console.log(res);
         URL.revokeObjectURL(coverImgUrl);
       })
-      .catch(e => console.log(e));
+      .catch(e => {
+        //실패 페이지
+        console.log(e);
+      });
   };
 
   return (
     <>
       <div className={styles.container}>
-        <Header page="write" />
+        <Header page="write" onSubmit={handleSubmitFormData} />
         <h1 className={`heading1 ${styles.title_text}`}>{`먼저 LP에 담을 곡을\n골라보세요`}</h1>
         <form onSubmit={handleSubmitYoutubeLink}>
           <input
@@ -120,7 +124,7 @@ const Write = () => {
           <button type="submit" className={`body1 ${styles.button_url}`}>
             링크 인증하기
             <Image
-              src={'/icons/link-check.svg'}
+              src={'/icons/link_check.svg'}
               width="28"
               height="28"
               alt="link_check"
@@ -179,14 +183,14 @@ const Write = () => {
         <div className={`note ${styles.reciever_nickname}`}>To. {`누구누구`}</div>
         <div className={styles.message}>
           <Image
-            src={'/images/bottom-left-sticker.png'}
+            src={'/images/bottom_left_sticker.png'}
             width={140}
             height={48}
             alt="bottom-left-sticker"
             className="absolute bottom-[-45px] left-[-30px]"
           />
           <Image
-            src={'/images/top-right-sticker.png'}
+            src={'/images/top_right_sticker.png'}
             width={140}
             height={48}
             alt="top-right-sticker"

@@ -1,0 +1,47 @@
+/* 스낵바 컨테이너 */
+.container {
+  @apply text-sm w-11/12 fixed bottom-1 right-1/2 z-10 translate-x-2/4;
+}
+
+.notification {
+  @apply mb-4 rounded opacity-90 shadow-black;
+}
+
+.toast {
+  @apply bg-snackbar h-12	text-white p-2;
+  animation-fill-mode: forwards;
+  animation-name: snackbar-popup, snackbar-popdown;
+  animation-delay: 0s, 1.3s;
+  animation-duration: 0.4s, 0.4s;
+  animation-timing-function: ease, ease;
+}
+
+.toast_message {
+  @apply w-4/5 mt-1 flex text-center;
+}
+
+.toast_message img {
+  @apply mx-4;
+}
+
+.toast_message span {
+  @apply text-sm;
+}
+
+@keyframes snackbar-popup {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes snackbar-popdown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(150%);
+  }
+}

@@ -7,7 +7,7 @@
 }
 
 .input_url {
-  @apply w-[388px] h-[56px] pl-[20px] bg-[#373d41] text-white;
+  @apply w-[388px] h-[56px] px-[20px] bg-[#373d41] text-white;
 }
 
 .input_url::placeholder {
