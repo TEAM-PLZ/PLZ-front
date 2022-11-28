@@ -1,14 +1,16 @@
 export interface IAlbum {
   data: {
+    coverImgPath: string;
     id: number;
-    imgPath: string;
     message: string;
+    randomCoverPath: string;
     read: false;
     receiver: {
       id: number;
       name: string;
     };
     singer: string;
+    thumbnailImgPath: string;
     title: string;
     url: string;
     writer: {
