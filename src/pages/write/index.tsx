@@ -11,6 +11,7 @@ import SnackBar from 'components/SnackBar';
 import getRandomImage from 'utils/getRandomImage';
 import CoverImage from 'components/CoverImage';
 import PopupModal from 'components/PopupModal';
+import LpCover from 'components/LpCover';
 
 interface IForm {
   singer: string;
@@ -23,6 +24,14 @@ interface ISnackBarList {
   status: string;
   message: string;
 }
+
+const coverImgSize = 'w-[330px] h-[330px] max-[375px]:w-[180px] max-[375px]:h-[180px]';
+const thumbnailImgSize = 'w-[114.44px] h-[114.44px] max-[375px]:w-[85px] max-[375px]:h-[85px]';
+const lpSize = {
+  wrapper: 'w-[330px] h-[330px] max-[375px]:w-[180px] max-[375px]:h-[180px]',
+  outline: 'w-full h-full',
+  center: 'w-[15.97px] h-[15.97px]',
+};
 
 const Write = () => {
   const [url, setUrl] = useState<string>('');
@@ -135,7 +144,16 @@ const Write = () => {
             />
           </button>
         </form>
-        <div className="w-[200px] h-[200px]  m-auto bg-black"></div>
+        <div className="mt-[100px] mb-[40px]">
+          <LpCover
+            coverImgPath={coverImgUrl ? coverImgUrl : randomImageSrc}
+            thumbnailImgPath={thumbnailUrl ? thumbnailUrl : '/images/image3.png'}
+            coverPosition="right"
+            coverImgSize={coverImgSize}
+            thumbnailImgSize={thumbnailImgSize}
+            lpSize={lpSize}
+          />
+        </div>
         <h1 className="heading1 mb-[8px]">노래 제목</h1>
         <input type="text" name="title" onChange={handleChange} value={title} />
         <p className="note text-[#b3b3b3]">아티스트</p>

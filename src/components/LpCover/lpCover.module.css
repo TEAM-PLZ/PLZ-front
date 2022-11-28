@@ -1,0 +1,44 @@
+.lp_cover_left {
+  @apply absolute z-[4] -left-24 max-[375px]:-left-12;
+}
+
+.lp_cover_right {
+  @apply absolute z-[4] -right-56 max-[375px]:-right-16;
+}
+
+.lp_wrapper {
+  @apply flex justify-center items-center relative z-[3] m-auto;
+}
+
+.center {
+  @apply absolute z-[3];
+}
+
+.image {
+  @apply absolute z-[2];
+}
+
+.outline {
+  @apply absolute;
+}
+
+.rotate {
+  animation: rotateImage 6s linear infinite;
+}
+
+.rotate__running {
+  animation-play-state: running;
+}
+
+.rotate__paused {
+  animation-play-state: paused;
+}
+
+@keyframes rotateImage {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

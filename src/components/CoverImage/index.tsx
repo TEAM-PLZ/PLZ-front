@@ -9,8 +9,8 @@ interface ICoverImage {
 const CoverImage = ({ src, style }: ICoverImage) => {
   return (
     <div className={`relative ${style}`}>
-      <div className={styles.cover_image_filter}></div>
-      <Image src={src} layout="fill" alt="random_image" className="object-cover z-0" />
+      <div className={styles.cover_image_filter} />
+      <Image src={src} layout="fill" alt="random_image" className="z-0 object-cover" />
     </div>
   );
 };
