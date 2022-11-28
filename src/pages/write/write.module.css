@@ -1,19 +1,34 @@
 .container {
-  @apply max-w-[448px] w-full h-screen text-white text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f];
+  @apply max-w-[448px] w-full h-auto text-white text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f];
+}
+
+.title_text {
+  @apply whitespace-pre-line mb-[40px];
 }
 
 .input_url {
-  @apply w-[384px] h-[56px] mt-[30px] p-[13px] bg-[#484d54] text-white;
+  @apply w-[388px] h-[56px] pl-[20px] bg-[#373d41] text-white;
 }
 
 .input_url::placeholder {
-  @apply text-white text-center;
+  @apply text-[#9b9ea0];
 }
 
 .button_url {
-  @apply flex items-center text-black mt-[30px] m-auto px-[36px] py-[11px] bg-white rounded-[12px];
+  @apply flex items-center justify-center w-[188px] h-[46px] mt-[30px] m-auto bg-white text-black;
 }
 
 .button_cover {
-  @apply flex items-center m-auto w-[188px] h-[46px] px-[38px] py-[8px] mb-[14px] bg-white text-black;
+  @apply flex items-center m-auto w-[188px] h-[46px] px-[38px] py-[8px] mb-[14px] bg-white text-black cursor-pointer;
+}
+
+.reciever_nickname {
+  @apply w-[388px] ml-[30px] mb-[30px] pb-[11px] border-b-[1px] border-[#b3b3b3] text-left text-[#b3b3b3];
+}
+
+.input_message {
+}
+
+.message {
+  @apply w-[388px] h-[286px];
 }

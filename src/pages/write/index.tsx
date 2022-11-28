@@ -10,11 +10,12 @@ import styles from './write.module.css';
 import SnackBar from 'components/SnackBar';
 import getRandomImage from 'utils/getRandomImage';
 import CoverImage from 'components/CoverImage';
+import Lp from 'components/Lp';
 
 interface IForm {
   singer: string;
   title: string;
-  toNickname: string;
+  writerNickname: string;
   message: string;
 }
 
@@ -34,10 +35,10 @@ const Write = () => {
     status: '',
     message: '',
   });
-  const [{ singer, title, toNickname, message }, handleChange] = useInputs<IForm>({
+  const [{ singer, title, writerNickname, message }, handleChange] = useInputs<IForm>({
     singer: '',
     title: '',
-    toNickname: '',
+    writerNickname: '',
     message: '',
   });
 
@@ -76,8 +77,7 @@ const Write = () => {
     getYoutubeData(url);
   };
 
-  const handleSubmitFormData = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmitFormData = () => {
     const newFormData = new FormData();
 
     const obj = {
@@ -88,7 +88,7 @@ const Write = () => {
       thumbnailImgPath: thumbnailUrl,
       title,
       url,
-      writerNickname: toNickname,
+      writerNickname: writerNickname,
     };
 
     Object.entries(obj).forEach(([key, value]) => {
@@ -109,31 +109,40 @@ const Write = () => {
     <>
       <div className={styles.container}>
         <Header page="write" />
-        <h1 className={`heading1`}>LP에 담을 곡 선택</h1>
+        <h1 className={`heading1 ${styles.title_text}`}>{`먼저 LP에 담을 곡을\n골라보세요`}</h1>
         <form onSubmit={handleSubmitYoutubeLink}>
           <input
             type="url"
             onChange={onUrlChange}
             value={url}
-            placeholder="내 마음을 전할 음악을 선택해주세요"
-            className={`body2 ${styles.input_url}`}
+            placeholder="전달할 유튜브 링크를 복사해서 넣어주세요."
+            className={`note ${styles.input_url}`}
           />
           <button type="submit" className={`body1 ${styles.button_url}`}>
-            링크 가져오기
+            링크 인증하기
             <Image
-              src={'/icons/youtube.svg'}
+              src={'/icons/link-check.svg'}
               width="28"
               height="28"
-              alt="youtube"
+              alt="link_check"
               className="ml-[6px]"
             />
           </button>
         </form>
+        <div className="w-[200px] h-[200px]  m-auto bg-black"></div>
+        <h1 className="heading1 mb-[8px]">노래 제목</h1>
+        <input type="text" name="title" onChange={handleChange} value={title} />
+        <p className="note text-[#b3b3b3]">아티스트</p>
+        <input type="text" name="singer" onChange={handleChange} value={singer} />
+
+        <div className="mt-[100px]"></div>
         <div>
-          <h1
-            className={`heading1 whitespace-pre-line mb-[40px] mx-auto`}
-          >{`이제 LP 커버를\n만들어볼까요?`}</h1>
-          <CoverImage src={coverImgUrl ? coverImgUrl : randomImageSrc} size={'large'} />
+          <h1 className={`heading1 ${styles.title_text}`}>{`이제 LP 커버를\n만들어볼까요?`}</h1>
+
+          <CoverImage
+            src={coverImgUrl ? coverImgUrl : randomImageSrc}
+            style={`w-[300px] h-[300px] mx-auto mb-[28px]`}
+          />
 
           <button onClick={onRandomImageClick} className={`body2 ${styles.button_cover}`}>
             커버 바꾸기
@@ -164,19 +173,31 @@ const Write = () => {
             className="hidden"
           />
         </div>
-        <form className="flex flex-col" onSubmit={handleSubmitFormData}>
-          <p>가수이름 </p>
-          <input type="text" name="singer" onChange={handleChange} value={singer} />
-          <p>노래 제목 </p>
-          <input type="text" name="title" onChange={handleChange} value={title} />
+
+        <h1
+          className={`heading1 ${styles.title_text}`}
+        >{`내 마음을 전할\n 메시지를 작성해보세요`}</h1>
+        <div className={`note ${styles.reciever_nickname}`}>To. {`누구누구`}</div>
+        <div className={styles.message}>
+          <input
+            type="text"
+            name="message"
+            onChange={handleChange}
+            value={message}
+            className={styles.input_message}
+          />
+        </div>
+        <div>
           <p>닉네임 </p>
-          <input type="text" name="toNickname" onChange={handleChange} value={toNickname} />
-          <p>메시지 </p>
-          <input type="text" name="message" onChange={handleChange} value={message} />
-          <div>
-            <button type="submit">제출하기</button>
-          </div>
-        </form>
+          <input
+            type="text"
+            name="writerNickname"
+            onChange={handleChange}
+            value={writerNickname}
+            placeholder="From. 보내는 사람 닉네임을 입력해주세요."
+          />
+          <button onClick={handleSubmitFormData}>제출하기</button>
+        </div>
       </div>
       {snackBar?.status !== '' && <SnackBar snackBar={snackBar} setSnackBar={setSnackBar} />}
     </>
