@@ -15,3 +15,10 @@ export const getAlbum = (id: any) => {
     url: `https://lp.weareboard.kr/api/v1/lp/${id}`,
   });
 };
+
+export const getAlbumList = () => {
+  return apiClient({
+    method: 'get',
+    url: '/api/v1/lp/my',
+  });
+};

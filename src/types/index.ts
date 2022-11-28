@@ -1,24 +1,22 @@
 export interface IAlbum {
-  data: {
-    coverImgPath: string;
+  coverImgPath: string;
+  id: number;
+  message: string;
+  randomCoverPath: string;
+  read: false;
+  receiver: {
     id: number;
-    message: string;
-    randomCoverPath: string;
-    read: false;
-    receiver: {
-      id: number;
-      name: string;
-    };
-    singer: string;
-    thumbnailImgPath: string;
-    title: string;
-    url: string;
-    writer: {
-      id: number;
-      name: string;
-    };
-    writerNickname: string;
+    name: string;
   };
+  singer: string;
+  thumbnailImgPath: string;
+  title: string;
+  url: string;
+  writer: {
+    id: number;
+    name: string;
+  };
+  writerNickname: string;
 }
 
 export interface IYoutube {

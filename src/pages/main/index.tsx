@@ -1,14 +1,19 @@
+import { GetServerSideProps } from 'next';
+import Image from 'next/image';
+import Carousel from 'react-material-ui-carousel';
+import { useState } from 'react';
+import axios from 'axios';
+import { getCookies } from 'cookies-next';
 import Header from 'components/Header';
 import { Dummy } from 'components/Template/type';
 import Template from 'components/Template';
 import NewArriveModal from 'components/NewArriveModal';
-import styles from './main.module.css';
-import Carousel from 'react-material-ui-carousel';
-import { useState } from 'react';
-import Image from 'next/image';
 import PopupModal from 'components/PopupModal';
 import useCopyClipBoard from 'hooks/useCopyClipBoard';
-import { GetServerSideProps } from 'next';
+import { getAlbumList } from 'services/album';
+import { IAlbum } from 'types/index';
+
+import styles from './main.module.css';
 
 const division = (array: any[], n: number) => {
   const newArray = [];
@@ -40,8 +45,12 @@ const dummy: Dummy[] = [
   { id: 17, albumSrc: '' },
   { id: 18, albumSrc: '' },
 ];
-// FIXME: any 및 변수명, 에러처리, 타입
-const Main = () => {
+
+interface IProps {
+  data: IAlbum[];
+}
+
+const Main = ({ data }: IProps) => {
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -54,7 +63,7 @@ const Main = () => {
   const onClickShareBtn = async () => {
     try {
       await onCopy('복사가 되는지 확인해보자');
-      setPopup({ status: 'done', message: '복사되었습니다' });
+      setPopup({ status: 'success', message: '복사되었습니다' });
     } catch {
       setPopup({ status: 'error', message: '다시 시도해주세요' });
     }
@@ -81,7 +90,7 @@ const Main = () => {
         <p className="body2">
           “내 플리 보관함 링크”를 친구에게 공유하고 <br /> 나만의 플리를 채워보세요!
         </p>
-        <button className={styles.shareButton} onClick={onClickShareBtn}>
+        <button type="button" className={styles.shareButton} onClick={onClickShareBtn}>
           <Image src="/icons/link.svg" width="24" height="24" alt="link" />
           <span className="body1">내 플리 보관함 링크</span>
         </button>
@@ -93,3 +102,17 @@ const Main = () => {
 };
 
 export default Main;
+
+export const getServerSideProps: GetServerSideProps = async context => {
+  const { token } = getCookies(context);
+  if (token) {
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+
+  try {
+    const data = await getAlbumList();
+    return { props: { data } };
+  } catch (e) {
+    return { notFound: true };
+  }
+};

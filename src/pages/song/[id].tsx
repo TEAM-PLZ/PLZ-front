@@ -16,7 +16,11 @@ const lpSize = {
   center: 'w-[12px] h-[12px]',
 };
 
-const DetailPage = ({ data }: IAlbum) => {
+interface IProps {
+  data: IAlbum;
+}
+
+const DetailPage = ({ data }: IProps) => {
   return (
     <div className={styles.container}>
       <Header page="detail" href="/main" />
