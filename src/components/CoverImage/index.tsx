@@ -7,7 +7,6 @@ interface ICoverImage {
 }
 
 const CoverImage = ({ src, style }: ICoverImage) => {
-
   return (
     <div className={`relative ${style}`}>
       <div className={styles.cover_image_filter}></div>

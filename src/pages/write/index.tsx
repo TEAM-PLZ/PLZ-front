@@ -10,6 +10,7 @@ import styles from './write.module.css';
 import SnackBar from 'components/SnackBar';
 import getRandomImage from 'utils/getRandomImage';
 import CoverImage from 'components/CoverImage';
+import PopupModal from 'components/PopupModal';
 
 interface IForm {
   singer: string;
@@ -29,6 +30,7 @@ const Write = () => {
   const [coverImgUrl, setCoverImgUrl] = useState<string>('');
   const [coverImgFile, setCoverImgFile] = useState<File>();
   const [randomImageSrc, setRandomImageSrc] = useState<string>('/images/image1.png');
+  const [popup, setPopup] = useState({ status: '', message: '' });
 
   const [snackBar, setSnackBar] = useState<ISnackBarList>({
     status: '',
@@ -46,9 +48,9 @@ const Write = () => {
     try {
       const result = await axios.get<IYoutube>(`https://www.youtube.com/oembed?url=${url}`);
       setThumbnailUrl(setThumbnailFileName(result.data.thumbnail_url));
-      setSnackBar({ status: 'success', message: '성공적으로 링크를 가져왔습니다.' });
+      setPopup({ status: 'done', message: `링크가\n확인되었습니다` });
     } catch (e) {
-      setSnackBar({ status: 'failure', message: '링크를 다시 확인해주세요.' });
+      setPopup({ status: 'error', message: `링크를\n불러올 수 없습니다` });
     }
   };
 
@@ -112,6 +114,7 @@ const Write = () => {
     <>
       <div className={styles.container}>
         <Header page="write" onSubmit={handleSubmitFormData} />
+
         <h1 className={`heading1 ${styles.title_text}`}>{`먼저 LP에 담을 곡을\n골라보세요`}</h1>
         <form onSubmit={handleSubmitYoutubeLink}>
           <input
@@ -215,7 +218,7 @@ const Write = () => {
           className={`note ${styles.writer_nickname}`}
         />
       </div>
-      {snackBar?.status !== '' && <SnackBar snackBar={snackBar} setSnackBar={setSnackBar} />}
+      {popup.status && <PopupModal popup={popup} setPopup={setPopup} />}
     </>
   );
 };
