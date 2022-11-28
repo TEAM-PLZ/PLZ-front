@@ -1,11 +1,15 @@
 import Header from 'components/Header';
-import NewArriveModal from 'components/NewArriveModal';
-import styles from './main.module.css';
 import { Dummy } from 'components/Template/type';
 import Template from 'components/Template';
+import NewArriveModal from 'components/NewArriveModal';
+import styles from './main.module.css';
 import Carousel from 'react-material-ui-carousel';
 import { useState } from 'react';
 import Image from 'next/image';
+import PopupModal from 'components/PopupModal';
+import useCopyClipBoard from 'hooks/useCopyClipBoard';
+import { GetServerSideProps } from 'next';
+
 const division = (array: any[], n: number) => {
   const newArray = [];
   for (let i = 0; i < array.length; i += n) {
@@ -16,32 +20,44 @@ const division = (array: any[], n: number) => {
   return newArray;
 };
 
+const dummy: Dummy[] = [
+  { id: 1, albumSrc: '' },
+  { id: 2, albumSrc: '/images/lp_image.png' },
+  { id: 3, albumSrc: '' },
+  { id: 4, albumSrc: '' },
+  { id: 5, albumSrc: '' },
+  { id: 6, albumSrc: '' },
+  { id: 7, albumSrc: '' },
+  { id: 8, albumSrc: '' },
+  { id: 9, albumSrc: '' },
+  { id: 10, albumSrc: '' },
+  { id: 11, albumSrc: '' },
+  { id: 12, albumSrc: '' },
+  { id: 13, albumSrc: '' },
+  { id: 14, albumSrc: '' },
+  { id: 2, albumSrc: '' },
+  { id: 16, albumSrc: '' },
+  { id: 17, albumSrc: '' },
+  { id: 18, albumSrc: '' },
+];
+// FIXME: any 및 변수명, 에러처리, 타입
 const Main = () => {
-  const dummy: Dummy[] = [
-    { id: 1, albumSrc: '' },
-    { id: 2, albumSrc: '/images/lp_image.png' },
-    { id: 3, albumSrc: '' },
-    { id: 4, albumSrc: '' },
-    { id: 5, albumSrc: '' },
-    { id: 6, albumSrc: '' },
-    { id: 7, albumSrc: '' },
-    { id: 8, albumSrc: '' },
-    { id: 9, albumSrc: '' },
-    { id: 10, albumSrc: '' },
-    { id: 11, albumSrc: '' },
-    { id: 12, albumSrc: '' },
-    { id: 13, albumSrc: '' },
-    { id: 14, albumSrc: '' },
-    { id: 2, albumSrc: '' },
-    { id: 16, albumSrc: '' },
-    { id: 17, albumSrc: '' },
-    { id: 18, albumSrc: '' },
-  ];
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isCopy, onCopy] = useCopyClipBoard();
+  const [popup, setPopup] = useState({ status: '', message: '' });
+  const [pageIndex, setPageIndex] = useState(0);
   const templateArray = division(dummy, 9);
 
   const onChangeCarousel = (now: any) => {
-    console.log(now);
+    setPageIndex(now);
+  };
+
+  const onClickShareBtn = async () => {
+    try {
+      await onCopy('복사가 되는지 확인해보자');
+      setPopup({ status: 'done', message: '복사되었습니다' });
+    } catch {
+      setPopup({ status: 'error', message: '다시 시도해주세요' });
+    }
   };
 
   return (
@@ -58,16 +74,19 @@ const Main = () => {
           </div>
         ))}
       </Carousel>
+      <div className={styles.sliderText}>
+        <span>{pageIndex + 1} 번째 플리 보관함</span>
+      </div>
       <div className={styles.bottomWrapper}>
         <p className="body2">
           “내 플리 보관함 링크”를 친구에게 공유하고 <br /> 나만의 플리를 채워보세요!
         </p>
-        <button className={styles.shareButton}>
+        <button className={styles.shareButton} onClick={onClickShareBtn}>
           <Image src="/icons/link.svg" width="24" height="24" alt="link" />
           <span className="body1">내 플리 보관함 링크</span>
         </button>
       </div>
-
+      {isCopy && popup.status && <PopupModal popup={popup} setPopup={setPopup} />}
       {/* <NewArriveModal/> */}
     </div>
   );
