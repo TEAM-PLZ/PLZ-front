@@ -1,6 +1,5 @@
-import Lp from 'components/Lp';
 import Image from 'next/image';
-
+import Lp from 'components/Lp';
 import styles from './newArriveModal.module.css';
 
 const NewArriveModal = () => {
