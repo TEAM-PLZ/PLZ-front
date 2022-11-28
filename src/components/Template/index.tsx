@@ -1,18 +1,17 @@
-import React from 'react';
 import Album from 'components/Template/Album';
-import { Dummy } from './type';
+import { IAlbum } from 'types';
 import styles from './template.module.css';
 
-interface IRowProps {
-  list: Dummy[];
+interface IProps {
+  list: IAlbum[];
 }
 
-const Row = ({ list }: IRowProps) => {
+const Row = ({ list }: IProps) => {
   return (
     <>
       <div className="flex justify-between px-[30px]">
         {list.map((item, index) => {
-          return <Album key={index} albumSrc={item?.albumSrc} />;
+          return <Album key={index} album={item} />;
         })}
       </div>
       <div className={styles.shelf} />
@@ -20,12 +19,12 @@ const Row = ({ list }: IRowProps) => {
   );
 };
 
-const Templete = ({ array }: any) => {
+const Templete = ({ list }: IProps) => {
   return (
     <>
-      <Row list={array.slice(0, 3)} />
-      <Row list={array.slice(3, 6)} />
-      <Row list={array.slice(6, 9)} />
+      <Row list={list.slice(0, 3)} />
+      <Row list={list.slice(3, 6)} />
+      <Row list={list.slice(6, 9)} />
     </>
   );
 };

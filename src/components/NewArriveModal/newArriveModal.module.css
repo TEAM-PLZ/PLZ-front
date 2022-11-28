@@ -5,6 +5,7 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
+  z-index: 99;
   @apply flex flex-col items-center justify-center;
 }
 
