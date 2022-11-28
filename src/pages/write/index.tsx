@@ -9,6 +9,7 @@ import Header from 'components/Header';
 import styles from './write.module.css';
 import SnackBar from 'components/SnackBar';
 import getRandomImage from 'utils/getRandomImage';
+import CoverImage from 'components/CoverImage';
 
 interface IForm {
   singer: string;
@@ -129,9 +130,31 @@ const Write = () => {
           </button>
         </form>
         <div>
-          <button className="bg-black">
-            <label htmlFor="input-image">커버 업로드</label>
+          <h1
+            className={`heading1 whitespace-pre-line mb-[40px] mx-auto`}
+          >{`이제 LP 커버를\n만들어볼까요?`}</h1>
+          <CoverImage src={coverImgUrl ? coverImgUrl : randomImageSrc} size={'large'} />
+
+          <button onClick={onRandomImageClick} className={`body2 ${styles.button_cover}`}>
+            커버 바꾸기
+            <Image
+              src={'/icons/change.svg'}
+              width="24"
+              height="24"
+              alt="change"
+              className="ml-[6px]"
+            />
           </button>
+          <label htmlFor="input-image" className={`body2 ${styles.button_cover}`}>
+            커버 업로드
+            <Image
+              src={'/icons/upload.svg'}
+              width="24"
+              height="24"
+              alt="change"
+              className="ml-[6px]"
+            />
+          </label>
           <input
             type="file"
             onChange={onCoverImageChange}
@@ -140,18 +163,6 @@ const Write = () => {
             accept="image/*"
             className="hidden"
           />
-        </div>
-        <div>
-          <div className="relative w-[300px] h-[300px]">
-            <Image
-              src={coverImgUrl ? coverImgUrl : randomImageSrc}
-              fill
-              sizes="300px"
-              alt="random_image"
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-          <button onClick={onRandomImageClick}>새로고침</button>
         </div>
         <form className="flex flex-col" onSubmit={handleSubmitFormData}>
           <p>가수이름 </p>

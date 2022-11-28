@@ -13,3 +13,7 @@
 .button_url {
   @apply flex items-center text-black mt-[30px] m-auto px-[36px] py-[11px] bg-white rounded-[12px];
 }
+
+.button_cover {
+  @apply flex items-center m-auto w-[188px] h-[46px] px-[38px] py-[8px] mb-[14px] bg-white text-black;
+}
