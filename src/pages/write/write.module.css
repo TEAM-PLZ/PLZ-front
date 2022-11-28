@@ -1,5 +1,5 @@
 .container {
-  @apply max-w-[448px] w-full h-auto text-white text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f];
+  @apply max-w-[448px] w-full h-auto text-white text-center m-auto bg-gradient-to-b from-[#1b2125] to-[#4d545f] overflow-x-hidden;
 }
 
 .title_text {
