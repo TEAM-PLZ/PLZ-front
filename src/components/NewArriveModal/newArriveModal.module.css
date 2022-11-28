@@ -37,7 +37,7 @@
 }
 
 .envelopWrapper img:nth-last-of-type(1) {
-  top: -30px;
+  top: 10px;
 }
 
 .button {
