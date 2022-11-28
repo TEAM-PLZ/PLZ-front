@@ -14,7 +14,7 @@ interface IPopupModal {
 
 const PopupModal = ({ popup, setPopup }: IPopupModal) => {
   const iconSrc = {
-    done: '/icons/popup_done.svg',
+    success: '/icons/popup_success.svg',
     error: '/icons/popup_error.svg',
   }[popup.status];
 

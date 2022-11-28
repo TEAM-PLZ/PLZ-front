@@ -9,10 +9,10 @@ export type TPage = 'home' | 'detail' | 'write';
 interface IHeader {
   page: TPage;
   href?: string;
-  onSubmit?: () => void;
+  onRefresh?: () => void;
 }
 
-const Header = ({ page = 'home', href, onSubmit }: IHeader) => {
+const Header = ({ page, href, onRefresh }: IHeader) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -48,12 +48,11 @@ const Header = ({ page = 'home', href, onSubmit }: IHeader) => {
               height="28"
               alt="refresh_icon"
               className="cursor-pointer"
-              onClick={handleClick}
+              onClick={onRefresh}
             />
           </div>
-          <p className="body2 text-[#eda1d6]" onClick={onSubmit}>
-            보내기
-          </p>
+          <div className={`heading1 ${styles.write_title}`}>메시지 플리 전송</div>
+          <div className="w-[28px]"></div>
         </>
       )}
       {page !== 'write' && (
