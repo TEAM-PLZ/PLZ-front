@@ -26,9 +26,16 @@
   @apply w-[388px] ml-[30px] mb-[30px] pb-[11px] border-b-[1px] border-[#b3b3b3] text-left text-[#b3b3b3];
 }
 
-.input_message {
+.message {
+  @apply relative bg-messageBackground w-[388px] h-[286px] mx-auto p-[20px] pt-[58px];
 }
 
-.message {
-  @apply w-[388px] h-[286px];
+.textarea_message {
+  @apply bg-inherit w-[348px] h-[162px];
 }
+
+.writer_nickname {
+  @apply w-[388px] mx-[30px] mt-[30px] mb-[180px] pb-[11px] border-b-[1px] bg-inherit border-[#b3b3b3] text-right text-[#b3b3b3];
+}
+
+

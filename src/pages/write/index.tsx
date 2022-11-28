@@ -10,7 +10,6 @@ import styles from './write.module.css';
 import SnackBar from 'components/SnackBar';
 import getRandomImage from 'utils/getRandomImage';
 import CoverImage from 'components/CoverImage';
-import Lp from 'components/Lp';
 
 interface IForm {
   singer: string;
@@ -175,29 +174,42 @@ const Write = () => {
         </div>
 
         <h1
-          className={`heading1 ${styles.title_text}`}
+          className={`heading1 mt-[120px] ${styles.title_text}`}
         >{`내 마음을 전할\n 메시지를 작성해보세요`}</h1>
         <div className={`note ${styles.reciever_nickname}`}>To. {`누구누구`}</div>
         <div className={styles.message}>
-          <input
-            type="text"
+          <Image
+            src={'/images/bottom-left-sticker.png'}
+            width={140}
+            height={48}
+            alt="bottom-left-sticker"
+            className="absolute bottom-[-45px] left-[-30px]"
+          />
+          <Image
+            src={'/images/top-right-sticker.png'}
+            width={140}
+            height={48}
+            alt="top-right-sticker"
+            className="absolute top-[-60px] right-[-30px]"
+          />
+          <p className="body2 absolute left-[20px] top-[20px] text-[#1b2125]">2022.11.18</p>
+          <textarea
             name="message"
             onChange={handleChange}
             value={message}
-            className={styles.input_message}
+            maxLength={100}
+            className={`note ${styles.textarea_message}`}
           />
+          <p className="note absolute right-[20px] bottom-[20px] text-[#9c9c9c]">{`${message.length}자 / 100자`}</p>
         </div>
-        <div>
-          <p>닉네임 </p>
-          <input
-            type="text"
-            name="writerNickname"
-            onChange={handleChange}
-            value={writerNickname}
-            placeholder="From. 보내는 사람 닉네임을 입력해주세요."
-          />
-          <button onClick={handleSubmitFormData}>제출하기</button>
-        </div>
+        <input
+          type="text"
+          name="writerNickname"
+          onChange={handleChange}
+          value={writerNickname}
+          placeholder="From. 보내는 사람 닉네임을 입력해주세요."
+          className={`note ${styles.writer_nickname}`}
+        />
       </div>
       {snackBar?.status !== '' && <SnackBar snackBar={snackBar} setSnackBar={setSnackBar} />}
     </>

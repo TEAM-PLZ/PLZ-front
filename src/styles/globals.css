@@ -25,6 +25,11 @@ a {
   text-decoration: none;
 }
 
+input,
+textarea {
+  outline: none;
+}
+
 * {
   box-sizing: border-box;
 }
