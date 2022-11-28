@@ -54,6 +54,14 @@
   font-size: 20px;
 }
 
+.bar2 {
+  font-family: 'PretendardRegular';
+  line-height: 1.2;
+  letter-spacing: -0.07px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
 @font-face {
   font-family: 'SF_HambakSnow';
   src: url('/fonts/SFHambakSnow.ttf');
@@ -72,4 +80,9 @@
 @font-face {
   font-family: 'PretendardMedium';
   src: url('/fonts/PretendardMedium.otf');
+}
+
+@font-face {
+  font-family: 'PretendardRegular';
+  src: url('/fonts/PretendardRegular.otf');
 }
