@@ -6,9 +6,10 @@ import styles from './header.module.css';
 interface IHeader {
   page: 'home' | 'detail' | 'write';
   href?: string;
+  onSubmit?: () => void;
 }
 
-const Header = ({ page = 'home', href }: IHeader) => {
+const Header = ({ page = 'home', href, onSubmit }: IHeader) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -35,9 +36,25 @@ const Header = ({ page = 'home', href }: IHeader) => {
           />
         </div>
       )}
-      {page === 'write' && <div></div>}
-      <div className={styles.icons}>
-        {page !== 'write' && (
+      {page === 'write' && (
+        <>
+          <div>
+            <Image
+              src="/icons/refresh.svg"
+              width="28"
+              height="28"
+              alt="refresh_icon"
+              className="cursor-pointer"
+              onClick={handleClick}
+            />
+          </div>
+          <p className="body2 text-[#eda1d6]" onClick={onSubmit}>
+            보내기
+          </p>
+        </>
+      )}
+      {page !== 'write' && (
+        <div className={styles.icons}>
           <Image
             src={page === 'home' ? '/icons/alarm.svg' : '/icons/white_alarm.svg'}
             width="24"
@@ -45,14 +62,14 @@ const Header = ({ page = 'home', href }: IHeader) => {
             alt="alarm_icon"
             className="mr-[18px]"
           />
-        )}
-        <Image
-          src={page === 'home' ? '/icons/hamburger.svg' : '/icons/white_hamburger.svg'}
-          width="24"
-          height="24"
-          alt="menu_icon"
-        />
-      </div>
+          <Image
+            src={page === 'home' ? '/icons/logout.svg' : '/icons/white_logout.svg'}
+            width="24"
+            height="24"
+            alt="logout_icon"
+          />
+        </div>
+      )}
     </div>
   );
 };
