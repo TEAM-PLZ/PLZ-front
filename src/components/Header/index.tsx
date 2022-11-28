@@ -2,9 +2,12 @@ import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/router';
 import styles from './header.module.css';
+import LogoutButton from './LogoutButton';
+
+export type TPage = 'home' | 'detail' | 'write';
 
 interface IHeader {
-  page: 'home' | 'detail' | 'write';
+  page: TPage;
   href?: string;
   onRefresh?: () => void;
 }
@@ -61,12 +64,7 @@ const Header = ({ page, href, onRefresh }: IHeader) => {
             alt="alarm_icon"
             className="mr-[18px]"
           />
-          <Image
-            src={page === 'home' ? '/icons/logout.svg' : '/icons/white_logout.svg'}
-            width="24"
-            height="24"
-            alt="logout_icon"
-          />
+          <LogoutButton page={page} />
         </div>
       )}
     </div>
