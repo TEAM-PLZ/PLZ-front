@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import styles from './header.module.css';
 
 interface IHeader {
-  page?: 'home' | 'detail' | 'write';
+  page: 'home' | 'detail' | 'write';
   href?: string;
 }
 

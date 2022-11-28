@@ -19,7 +19,7 @@ const Main = () => {
 
   return (
     <div className={styles.container}>
-      <Header />
+      <Header page="home" />
       <p className={`heading1 ${styles.headline}`}>
         <span className="block">새로운 플리가 도착했어요</span>
         <span className="block">바로 꺼내볼까요?</span>
