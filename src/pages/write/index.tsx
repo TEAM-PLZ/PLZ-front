@@ -6,7 +6,6 @@ import { IYoutube } from 'types';
 import setThumbnailFileName from 'utils/setThumbnailFileName';
 import { sendAlbum } from 'services/album';
 import Header from 'components/Header';
-import styles from './write.module.css';
 import getRandomImage from 'utils/getRandomImage';
 import CoverImage from 'components/CoverImage';
 import PopupModal from 'components/PopupModal';
@@ -15,6 +14,7 @@ import WriteSuccess from 'components/Write/WriteSucess';
 import WriteFailure from 'components/Write/WriteFailure';
 import { useRecoilState } from 'recoil';
 import submitStatusState from 'stores/write';
+import styles from './write.module.css';
 
 interface IForm {
   singer: string;
@@ -53,10 +53,10 @@ const Write = () => {
   });
   const [submitState, setSubmitState] = useRecoilState<string>(submitStatusState);
 
-  const getYoutubeData = async (url: string) => {
-    if (!url) return;
+  const getYoutubeData = async (youtubeUrl: string) => {
+    if (!youtubeUrl) return;
     try {
-      const result = await axios.get<IYoutube>(`https://www.youtube.com/oembed?url=${url}`);
+      const result = await axios.get<IYoutube>(`https://www.youtube.com/oembed?url=${youtubeUrl}`);
       setThumbnailUrl(setThumbnailFileName(result.data.thumbnail_url));
       setPopup({ status: 'success', message: `링크가\n확인되었습니다` });
     } catch (e) {
@@ -125,14 +125,14 @@ const Write = () => {
       url: `유튜브 링크를\n인증해주세요`,
       writerNickname: `닉네임을\n입력해주세요`,
     };
-    console.log(obj);
-    for (let key in obj) {
+
+    Object.keys(obj).forEach(key => {
       if (obj[key] === '' && key !== 'randomCoverPath') {
         setPopup({ status: 'error', message: errorMessage[key] });
         return;
       }
       newFormData.append(`${key}`, obj[key]);
-    }
+    });
 
     if (coverImgFile) newFormData.append('coverImgFile', coverImgFile as File);
 
@@ -150,14 +150,14 @@ const Write = () => {
     <div className={styles.container}>
       {submitState === 'success' && (
         <WriteSuccess
-          coverImgPath={coverImgUrl ? coverImgUrl : randomImageSrc}
-          thumbnailImgPath={thumbnailUrl ? thumbnailUrl : '/images/image3.png'}
+          coverImgPath={coverImgUrl || randomImageSrc}
+          thumbnailImgPath={thumbnailUrl || '/images/image3.png'}
         />
       )}
       {submitState === 'failure' && (
         <WriteFailure
-          coverImgPath={coverImgUrl ? coverImgUrl : randomImageSrc}
-          thumbnailImgPath={thumbnailUrl ? thumbnailUrl : '/images/image3.png'}
+          coverImgPath={coverImgUrl || randomImageSrc}
+          thumbnailImgPath={thumbnailUrl || '/images/image3.png'}
         />
       )}
       {submitState === '' && (
@@ -177,7 +177,7 @@ const Write = () => {
               <button type="submit" className={`body1 ${styles.button_url}`}>
                 링크 인증하기
                 <Image
-                  src={'/icons/link_check.svg'}
+                  src="/icons/link_check.svg"
                   width="28"
                   height="28"
                   alt="link_check"
@@ -187,8 +187,8 @@ const Write = () => {
             </form>
             <div className="mt-[100px] mb-[40px]">
               <LpCover
-                coverImgPath={coverImgUrl ? coverImgUrl : randomImageSrc}
-                thumbnailImgPath={thumbnailUrl ? thumbnailUrl : '/images/image3.png'}
+                coverImgPath={coverImgUrl || randomImageSrc}
+                thumbnailImgPath={thumbnailUrl || '/images/image3.png'}
                 coverPosition="right"
                 coverImgSize={coverImgSize}
                 thumbnailImgSize={thumbnailImgSize}
@@ -215,14 +215,19 @@ const Write = () => {
               <h1 className={`heading1 ${styles.title_text}`}>{`이제 LP 커버를\n만들어볼까요?`}</h1>
 
               <CoverImage
-                src={coverImgUrl ? coverImgUrl : randomImageSrc}
-                style={`w-[300px] h-[300px] mx-auto mb-[28px]`}
+                src={coverImgUrl || randomImageSrc}
+                // eslint-disable-next-line react/style-prop-object
+                style="w-[300px] h-[300px] mx-auto mb-[28px]"
               />
 
-              <button onClick={onRandomImageClick} className={`body2 ${styles.button_cover}`}>
+              <button
+                type="button"
+                onClick={onRandomImageClick}
+                className={`body2 ${styles.button_cover}`}
+              >
                 커버 바꾸기
                 <Image
-                  src={'/icons/change.svg'}
+                  src="/icons/change.svg"
                   width="24"
                   height="24"
                   alt="change"
@@ -232,21 +237,21 @@ const Write = () => {
               <label htmlFor="input-image" className={`body2 ${styles.button_cover}`}>
                 커버 업로드
                 <Image
-                  src={'/icons/upload.svg'}
+                  src="/icons/upload.svg"
                   width="24"
                   height="24"
                   alt="change"
                   className="ml-[6px]"
                 />
+                <input
+                  type="file"
+                  onChange={onCoverImageChange}
+                  name="image"
+                  id="input-image"
+                  accept="image/*"
+                  className="hidden"
+                />
               </label>
-              <input
-                type="file"
-                onChange={onCoverImageChange}
-                name="image"
-                id="input-image"
-                accept="image/*"
-                className="hidden"
-              />
             </div>
 
             <h1
@@ -254,14 +259,14 @@ const Write = () => {
             >{`내 마음을 전할\n 메시지를 작성해보세요`}</h1>
             <div className={styles.message}>
               <Image
-                src={'/images/bottom_left_sticker.png'}
+                src="/images/bottom_left_sticker.png"
                 width={140}
                 height={48}
                 alt="bottom-left-sticker"
                 className="absolute bottom-[-45px] left-[-30px]"
               />
               <Image
-                src={'/images/top_right_sticker.png'}
+                src="/images/top_right_sticker.png"
                 width={140}
                 height={48}
                 alt="top-right-sticker"
@@ -280,7 +285,7 @@ const Write = () => {
               <p className="note absolute right-[20px] bottom-[20px] text-[#9c9c9c]">{`${message.length}자 / 100자`}</p>
             </div>
             <div className={`note ${styles.writer_nickname}`}>
-              <label>From.</label>
+              <span>From.</span>
               <input
                 type="text"
                 name="writerNickname"
@@ -291,7 +296,11 @@ const Write = () => {
               />
             </div>
           </div>
-          <div className={`body1 ${styles.send_album}`} onClick={handleSubmitFormData}>
+          <div
+            className={`body1 ${styles.send_album}`}
+            role="presentation"
+            onClick={handleSubmitFormData}
+          >
             메시지 플리 보내기
             <Image
               src="/icons/letter.svg"
@@ -309,13 +318,3 @@ const Write = () => {
 };
 
 export default Write;
-
-//https://youtu.be/
-//https://www.youtube.com/watch?v=
-
-//https://www.youtube.com/watch?v=v6_GwXU1lkg // 유튜브 영상 url
-//https://youtu.be/SS-4-dAz1s0 // 유튜브 공유하기 버튼
-//https://www.youtube.com/watch?v=SS-4-dAz1s0&ab_channel=%EC%95%84%ED%87%B4%EC%82%AC%ED%95%98%EA%B3%A0%EC%8B%B6%EB%8B%A4
-
-// 썸네일 가져오기 https://img.youtube.com/vi/{code}/0.jpg
-// 썸네일 가져오기 https://img.youtube.com/vi/{code}/mqdefault.jpg

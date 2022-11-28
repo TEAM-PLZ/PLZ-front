@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes, useState } from 'react';
+import { useState } from 'react';
 
 const useInputs = <T = Record<string, any>>(
   initialForm: T,
@@ -13,7 +13,7 @@ const useInputs = <T = Record<string, any>>(
     event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     const { name, value } = event.target;
-    setForm(form => ({ ...form, [name]: value }));
+    setForm(prev => ({ ...prev, [name]: value }));
   };
   return [form, onChange, setForm];
 };

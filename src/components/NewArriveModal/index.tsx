@@ -21,7 +21,9 @@ const NewArriveModal = () => {
         </div>
         <Image src="/images/envelop_front.svg" width="361" height="350" alt="envelope_front" />
       </div>
-      <button className={styles.button}>플리 확인하러 가기</button>
+      <button type="button" className={styles.button}>
+        플리 확인하러 가기
+      </button>
     </div>
   );
 };

@@ -17,18 +17,18 @@ const WriteSuccess = ({ coverImgPath, thumbnailImgPath }: IWriteSuccess) => {
   const token = getCookie('token');
   const setSubmitStatus = useSetRecoilState(submitStatusState);
 
+  const sendPage = (isFirst: boolean) => {
+    const path = isFirst ? '/onBoarding' : '/main';
+    router.push(path).then(() => setSubmitStatus(''));
+  };
+
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
 
-    popup?.addEventListener('beforeunload', function () {
+    popup?.addEventListener('beforeunload', () => {
       sendPage(!!localStorage.getItem('isFirst'));
     });
-  };
-
-  const sendPage = (isFirst: boolean) => {
-    const sendPage = isFirst ? '/onBoarding' : '/main';
-    router.push(sendPage).then(() => setSubmitStatus(''));
   };
 
   const moveToMain = () => {
@@ -38,13 +38,13 @@ const WriteSuccess = ({ coverImgPath, thumbnailImgPath }: IWriteSuccess) => {
   return (
     <div className="h-screen py-[220px] overflow-y-scroll">
       <div className="flex items-center justify-center gap-2.5 mb-4">
-        <Image src={'/icons/heart_left.svg'} width={24} height={24} alt="heart_left" />
-        <Image src={'/icons/heart_success.svg'} width={64} height={64} alt="heart_success" />
-        <Image src={'/icons/heart_right.svg'} width={24} height={24} alt="heart_left" />
+        <Image src="/icons/heart_left.svg" width={24} height={24} alt="heart_left" />
+        <Image src="/icons/heart_success.svg" width={64} height={64} alt="heart_success" />
+        <Image src="/icons/heart_right.svg" width={24} height={24} alt="heart_left" />
       </div>
       <div className="heading1 mb-[50px]">
         <p>메시지 플리 전송이</p>
-        <p>{`완료되었어요 :)`}</p>
+        <p>완료되었어요 :)</p>
       </div>
       <div className="mb-[70px]">
         <LpCover

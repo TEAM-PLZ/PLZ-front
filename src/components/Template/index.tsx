@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import Album from 'components/Template/Album';
 import { Dummy } from './type';
 import styles from './template.module.css';
-import Album from 'components/Template/Album';
 
-interface RowProps {
+interface IRowProps {
   list: Dummy[];
 }
 
-const Row = ({ list }: RowProps) => {
+const Row = ({ list }: IRowProps) => {
   return (
     <>
       <div className="flex justify-between px-[30px]">

@@ -9,7 +9,7 @@ export const sendAlbum = (formData: FormData) => {
   });
 };
 
-export const getAlbum = (id: any) => {
+export const getAlbum = (id: unknown) => {
   return apiClient({
     method: 'get',
     url: `https://lp.weareboard.kr/api/v1/lp/${id}`,

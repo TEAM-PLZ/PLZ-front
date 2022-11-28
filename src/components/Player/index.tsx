@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import YouTube, { YouTubePlayer, YouTubeEvent } from 'react-youtube';
 import { useRecoilState } from 'recoil';
-import { playState } from 'stores/song';
+import playState from 'stores/song';
 import styles from './player.module.css';
 import ProgressBar from './PrograssBar';
 
@@ -49,14 +49,16 @@ const Player = ({ videoId }: IPlayer) => {
           height: '0',
         }}
         onReady={(event: YouTubeEvent) => {
-          if (event.target.videoTitle === '') return console.log('에러메시지');
+          if (event.target.videoTitle === '') {
+            console.log('에러메시지');
+            return;
+          }
           setYoutube(event.target);
           setDuration(event.target.getDuration());
         }}
-        //이벤트 리스너
-        onStateChange={(event: YouTubeEvent) => {
-          event.data === 1 ? startInterval() : clearInterval(timeInterval);
-        }}
+        onStateChange={(event: YouTubeEvent) =>
+          event.data === 1 ? startInterval() : clearInterval(timeInterval)
+        }
         onEnd={(event: YouTubeEvent) => {
           event.target.stopVideo(0);
           setIsPlaying(false);
@@ -65,20 +67,20 @@ const Player = ({ videoId }: IPlayer) => {
       <section className={styles.player}>
         {youtube && <ProgressBar curTime={curTime} duration={duration} />}
         <div className={styles.control}>
-          <button onCanPlay={onPrevAlbum}>
-            <img src="/icons/left.svg" />
+          <button type="button" onClick={onPrevAlbum}>
+            <img src="/icons/left.svg" alt="left" />
           </button>
           {isPlaying ? (
-            <button onClick={onPause}>
-              <img src="/icons/pause.svg" className="mx-12" />
+            <button type="button" onClick={onPause}>
+              <img src="/icons/pause.svg" className="mx-12" alt="pause" />
             </button>
           ) : (
-            <button onClick={onPlay}>
-              <img src="/icons/play.svg" className="mx-12" />
+            <button type="button" onClick={onPlay}>
+              <img src="/icons/play.svg" className="mx-12" alt="play" />
             </button>
           )}
-          <button onClick={onNextAlbum}>
-            <img src="/icons/right.svg" />
+          <button type="button" onClick={onNextAlbum}>
+            <img src="/icons/right.svg" alt="right" />
           </button>
         </div>
       </section>

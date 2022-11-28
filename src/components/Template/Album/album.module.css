@@ -10,7 +10,7 @@
 }
 
 .album {
-  @apply flex flex-col items-center relative;
+  @apply relative flex flex-col items-center;
 }
 
 .albumBox {

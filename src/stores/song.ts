@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-export const playState = atom<boolean>({
+const playState = atom<boolean>({
   key: 'playState',
   default: false,
 });
+
+export default playState;
