@@ -1,10 +1,10 @@
+/* eslint-disable react/require-default-props */
 import Image from 'next/image';
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
 import styles from './header.module.css';
-import LogoutButton from './LogoutButton';
-
-export type TPage = 'home' | 'detail' | 'write';
+import { TPage } from './type';
+import LogoutButton from '../LogoutButton';
 
 interface IHeader {
   page: TPage;
@@ -52,7 +52,7 @@ const Header = ({ page, href, onRefresh }: IHeader) => {
             />
           </div>
           <div className={`heading1 ${styles.write_title}`}>메시지 플리 전송</div>
-          <div className="w-[28px]"></div>
+          <div className="w-[28px]" />
         </>
       )}
       {page !== 'write' && (

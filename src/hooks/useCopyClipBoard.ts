@@ -13,7 +13,7 @@ function useCopyClipBoard(): [boolean, onCopyFn] {
     } catch (error) {
       console.error(error);
       setIsCopy(false);
-     
+
       return false;
     }
   };

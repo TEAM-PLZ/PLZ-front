@@ -1,5 +1,4 @@
 import Lp from 'components/Lp';
-import NewArriveModal from 'components/NewArriveModal';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -8,18 +7,18 @@ import styles from './login.module.css';
 const Login = () => {
   const router = useRouter();
 
+  const sendPage = (isFirst: boolean) => {
+    const path = isFirst ? '/onBoarding' : '/main';
+    router.push(path);
+  };
+
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
 
-    popup?.addEventListener('beforeunload', function () {
+    popup?.addEventListener('beforeunload', () => {
       sendPage(!!localStorage.getItem('isFirst'));
     });
-  };
-
-  const sendPage = (isFirst: boolean) => {
-    const sendPage = isFirst ? '/onBoarding' : '/main';
-    router.push(sendPage);
   };
 
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
-import { playState } from 'stores/song';
-import styles from './lpCover.module.css';
+import playState from 'stores/song';
 import CoverImage from 'components/CoverImage';
+import styles from './lpCover.module.css';
 
 interface ILpCover {
   coverImgPath: string;
@@ -46,7 +46,7 @@ const LpCover = ({
             isPlaying ? styles.rotate__running : styles.rotate__paused
           } ${lpSize.outline}`}
         >
-          <Image src={'/images/lp_outline.png'} fill sizes="100%" alt="outline" />
+          <Image src="/images/lp_outline.png" fill sizes="100%" alt="outline" />
         </div>
         <div
           className={`${styles.image} ${styles.rotate} ${
@@ -58,11 +58,11 @@ const LpCover = ({
             fill
             sizes="100%"
             alt="image"
-            className="rounded-full object-cover"
+            className="object-cover rounded-full"
           />
         </div>
         <div className={`${styles.center} ${lpSize.center}`}>
-          <Image src={'/images/lp_center.png'} fill sizes="100%" alt="center" />
+          <Image src="/images/lp_center.png" fill sizes="100%" alt="center" />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { getCookie } from 'cookies-next';
+
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const apiClient = axios.create({
@@ -10,9 +11,12 @@ const apiClient = axios.create({
   },
 });
 
-apiClient.interceptors.request.use((config: any) => {
+apiClient.interceptors.request.use((config: AxiosRequestConfig) => {
   const token = getCookie('token');
-  if (config && token) config.headers.Authorization = `Bearer ${token}`;
+  if (config.headers && token) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
