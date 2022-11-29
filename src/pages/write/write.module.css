@@ -35,7 +35,7 @@
 }
 
 .writer_nickname {
-  @apply w-[388px] mx-[30px] mt-[30px] mb-[180px] pb-[11px] border-b-[1px] bg-inherit border-[#b3b3b3] text-right text-[#b3b3b3];
+  @apply w-[384px] mx-[30px] mt-[30px] mb-[180px] pb-[11px] border-b-[1px] bg-inherit border-[#b3b3b3] text-right text-[#b3b3b3];
 }
 
 .input_writer_nickname {
