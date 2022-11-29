@@ -13,6 +13,7 @@ import { getAlbumList } from 'services/album';
 import { IAlbum } from 'types/index';
 import { IUserInfo } from 'types/login';
 import { checkUser } from 'services/auth';
+import { isAxiosError } from 'services/apiClient';
 import styles from './main.module.css';
 
 const getDividedArray = (array: IAlbum[], n: number) => {
@@ -27,9 +28,11 @@ const getDividedArray = (array: IAlbum[], n: number) => {
 interface IProps {
   data: IAlbum[];
   userInfo: IUserInfo;
+  error: string;
 }
 
-const Main = ({ data, userInfo }: IProps) => {
+const Main = ({ data, userInfo, error }: IProps) => {
+  if (error) return <div>{error}</div>;
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -117,6 +120,18 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
     return { props: { data, userInfo } };
   } catch (e) {
-    return { notFound: true };
+    if (isAxiosError(e)) {
+      return {
+        props: {
+          error: e.response?.data,
+        },
+      };
+    }
+
+    return {
+      props: {
+        error: '알 수 없는 오류가 발생했습니다.',
+      },
+    };
   }
 };
