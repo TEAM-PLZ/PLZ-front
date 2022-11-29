@@ -13,10 +13,10 @@ class MyDocument extends Document {
           <meta charSet="utf-8" />
           <link rel="icon" href="/favicon.png" />
           <meta name="description" content="내 플리를 부탁해, 플리즈" />
-          <meta name="keywords" content="플리즈, 내 플리를 부탁해, plz" />
+          <meta name="keywords" content="플리즈, 내 플리를 부탁해, plz, 플레이리스트" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="플리즈" />
-          <meta property="og:image" content="/favicon.png" />
+          <meta property="og:image" content="/preview.png" />
           <meta property="og:description" content="내 플리를 부탁해, 플리즈" />
           <meta property="og:url" content="https://plz-front-oglgo62l5-highjoon.vercel.app/" />
           <meta property="og:site_name" content="플리즈" />
