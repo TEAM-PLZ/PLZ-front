@@ -27,12 +27,9 @@ const getDividedArray = (array: IAlbum[], n: number) => {
 interface IProps {
   data: IAlbum[];
   userInfo: IUserInfo;
-  // eslint-disable-next-line react/require-default-props
-  error?: any;
 }
 
-const Main = ({ data, userInfo, error }: IProps) => {
-  if (error) console.log(error);
+const Main = ({ data, userInfo }: IProps) => {
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -120,6 +117,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
     return { props: { data, userInfo } };
   } catch (e) {
-    return { props: { error: e } };
+    return { notFound: true };
   }
 };
