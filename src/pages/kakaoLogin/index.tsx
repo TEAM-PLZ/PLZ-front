@@ -14,12 +14,13 @@ const KakaoAuth: NextPage<IProps> = ({ token }: IProps) => {
   const getToken = async () => {
     setCookie('token', token, COOKIE_OPTIONS);
     const result: IUserInfo = await checkUser<IUserInfo>();
+    console.log({ token, result });
     if (result?.isFirst) {
       localStorage.setItem('isFirst', String(result.isFirst));
     } else {
       localStorage.removeItem('isFirst');
     }
-    window.self.close();
+    // window.self.close();
   };
 
   useEffect(() => {
