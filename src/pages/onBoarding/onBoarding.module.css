@@ -1,0 +1,73 @@
+.container {
+  background-image: linear-gradient(180deg, #1b2125 41.57%, #4d545f 100%);
+  overflow-y: scroll;
+  height: 100vh;
+}
+.header {
+  height: 82px;
+  padding: 24px 30px;
+  @apply flex justify-between;
+}
+
+.onBoardingImgFrame {
+  position: relative;
+  margin: 98px 30px 0;
+  width: 388px;
+  height: 640px;
+  background-size: 388px 388px;
+  background-image: url('/images/lp_black.svg');
+  background-repeat: no-repeat;
+  background-position: 0 47px;
+}
+
+.onBoardingImgList {
+  width: calc(388px * 3);
+  @apply flex;
+}
+.onBoardingImgBox {
+  width: 100%;
+  @apply flex  flex-grow  flex-col items-center;
+}
+
+.onBoardingImg {
+  width: auto;
+  height: 640px;
+  margin-left: 160px;
+}
+.onBoardingTxtBox {
+  position: absolute;
+  left: 50%;
+  top: 460px;
+  transform: translateX(-50%);
+  width: 100%;
+}
+.onBoardingTitle {
+  margin-top: 60px;
+  @apply text-center text-white;
+}
+.onBoardingText {
+  margin-top: 13px;
+  white-space: pre-wrap;
+  @apply text-center text-white;
+}
+.circleBtnList {
+  margin-top: 50px;
+  width: 100%;
+  @apply flex justify-center items-center gap-[6px];
+}
+.circleBtn {
+  width: 6px;
+  height: 6px;
+  border: none;
+  border-radius: 5px;
+}
+
+.onBoardingBtn {
+  background: white;
+  width: 250px;
+  height: 56px;
+  color: #1b2125;
+  border-radius: 12px;
+  margin: 40px auto 74px auto;
+  @apply flex items-center justify-center;
+}
