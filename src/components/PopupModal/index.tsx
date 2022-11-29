@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import styles from './PopupModal.module.css';
+import styles from './popupModal.module.css';
 
 interface IPopupList {
   status: string;

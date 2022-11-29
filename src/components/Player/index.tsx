@@ -3,7 +3,7 @@ import YouTube, { YouTubePlayer, YouTubeEvent } from 'react-youtube';
 import { useRecoilState } from 'recoil';
 import playState from 'stores/song';
 import styles from './player.module.css';
-import ProgressBar from './PrograssBar';
+import ProgressBar from './ProgressBar';
 
 interface IPlayer {
   videoId: string;
