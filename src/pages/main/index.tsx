@@ -2,7 +2,6 @@ import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Carousel from 'react-material-ui-carousel';
 import { useState } from 'react';
-import axios from 'axios';
 import { getCookies } from 'cookies-next';
 import Header from 'components/Header';
 import Template from 'components/Template';
@@ -13,7 +12,7 @@ import { getAlbumList } from 'services/album';
 import { IAlbum } from 'types/index';
 import { IUserInfo } from 'types/login';
 import { checkUser } from 'services/auth';
-import { isAxiosError } from 'services/apiClient';
+import apiClient, { isAxiosError } from 'services/apiClient';
 import styles from './main.module.css';
 
 const getDividedArray = (array: IAlbum[], n: number) => {
@@ -29,18 +28,9 @@ interface IProps {
   data: IAlbum[];
   userInfo: IUserInfo;
   error: string;
-  // eslint-disable-next-line react/require-default-props
-  errorData?: string;
 }
 
-const Main = ({ data, userInfo, error, errorData }: IProps) => {
-  if (error)
-    return (
-      <div>
-        {error}
-        <div>{errorData}</div>
-      </div>
-    );
+const Main = ({ data, userInfo, error }: IProps) => {
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -67,6 +57,14 @@ const Main = ({ data, userInfo, error, errorData }: IProps) => {
       setPopup({ status: 'error', message: '다시 시도해주세요' });
     }
   };
+
+  if (error) {
+    return (
+      <section className={styles.container}>
+        <h1 className={`heading1 ${styles.headline}`}>{error}</h1>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.container}>
@@ -120,19 +118,18 @@ export default Main;
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { token } = getCookies(context);
-  if (token) {
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-  }
+  // console.log(token);
+  apiClient.defaults.headers.Authorization = `Bearer ${token}`;
 
   try {
     const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
+
     return { props: { data, userInfo } };
   } catch (e) {
     if (isAxiosError(e)) {
       return {
         props: {
           error: e.response?.data,
-          errorData: JSON.stringify(e),
         },
       };
     }

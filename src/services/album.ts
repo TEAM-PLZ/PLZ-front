@@ -1,4 +1,3 @@
-import { getCookie } from 'cookies-next';
 import apiClient from 'services/apiClient';
 
 export const sendAlbum = (formData: FormData) => {
@@ -20,13 +19,8 @@ export const getAlbum = (id: unknown) => {
 };
 
 export const getAlbumList = () => {
-  const token = getCookie('token');
-
   return apiClient({
     method: 'get',
     url: '/api/v1/lp/my',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 };
