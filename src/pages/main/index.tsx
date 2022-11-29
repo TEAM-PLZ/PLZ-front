@@ -73,7 +73,7 @@ const Main = () => {
       await onCopy(
         `${
           process.env.NODE_ENV === 'production'
-            ? 'https://plz-front-oglgo62l5-highjoon.vercel.app'
+            ? 'https://plz-front-highjoon.vercel.app/'
             : 'http://localhost:3000'
         }/write/${userInfo.id}`,
       );
