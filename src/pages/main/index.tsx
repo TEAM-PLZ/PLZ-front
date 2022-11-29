@@ -5,56 +5,38 @@ import { useState } from 'react';
 import axios from 'axios';
 import { getCookies } from 'cookies-next';
 import Header from 'components/Header';
-import { Dummy } from 'components/Template/type';
 import Template from 'components/Template';
 import NewArriveModal from 'components/NewArriveModal';
 import PopupModal from 'components/PopupModal';
 import useCopyClipBoard from 'hooks/useCopyClipBoard';
 import { getAlbumList } from 'services/album';
 import { IAlbum } from 'types/index';
-
+import { IUserInfo } from 'types/login';
+import { checkUser } from 'services/auth';
 import styles from './main.module.css';
+import mockData from './mock';
 
-const division = (array: any[], n: number) => {
+const getDividedArray = (array: any[], n: number) => {
   const newArray = [];
   for (let i = 0; i < array.length; i += n) {
     const slicedArray = array.slice(i, i + n);
     newArray.push([...slicedArray, ...Array(9 - slicedArray.length)]);
   }
-
   return newArray;
 };
 
-const dummy: Dummy[] = [
-  { id: 1, albumSrc: '' },
-  { id: 2, albumSrc: '/images/lp_image.png' },
-  { id: 3, albumSrc: '' },
-  { id: 4, albumSrc: '' },
-  { id: 5, albumSrc: '' },
-  { id: 6, albumSrc: '' },
-  { id: 7, albumSrc: '' },
-  { id: 8, albumSrc: '' },
-  { id: 9, albumSrc: '' },
-  { id: 10, albumSrc: '' },
-  { id: 11, albumSrc: '' },
-  { id: 12, albumSrc: '' },
-  { id: 13, albumSrc: '' },
-  { id: 14, albumSrc: '' },
-  { id: 2, albumSrc: '' },
-  { id: 16, albumSrc: '' },
-  { id: 17, albumSrc: '' },
-  { id: 18, albumSrc: '' },
-];
-
 interface IProps {
   data: IAlbum[];
+  userInfo: IUserInfo;
 }
 
-const Main = ({ data }: IProps) => {
+const Main = ({ data, userInfo }: IProps) => {
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
-  const templateArray = division(dummy, 9);
+  const templateArray = getDividedArray(mockData, 9);
+  const hasNew = mockData.some(item => !item.read);
+  const hasPopUp = isCopy && popup.status;
 
   const onChangeCarousel = (now: any) => {
     setPageIndex(now);
@@ -62,7 +44,7 @@ const Main = ({ data }: IProps) => {
 
   const onClickShareBtn = async () => {
     try {
-      await onCopy('복사가 되는지 확인해보자');
+      await onCopy(`write주소/${userInfo.id}`);
       setPopup({ status: 'success', message: '복사되었습니다' });
     } catch {
       setPopup({ status: 'error', message: '다시 시도해주세요' });
@@ -79,7 +61,7 @@ const Main = ({ data }: IProps) => {
       <Carousel animation="slide" autoPlay={false} indicators={false} onChange={onChangeCarousel}>
         {templateArray.map((item, index) => (
           <div className={styles.albumList} key={index}>
-            <Template array={item} />
+            <Template list={item} />
           </div>
         ))}
       </Carousel>
@@ -95,8 +77,8 @@ const Main = ({ data }: IProps) => {
           <span className="body1">내 플리 보관함 링크</span>
         </button>
       </div>
-      {isCopy && popup.status && <PopupModal popup={popup} setPopup={setPopup} />}
-      {/* <NewArriveModal/> */}
+      {hasPopUp && <PopupModal popup={popup} setPopup={setPopup} />}
+      {hasNew && <NewArriveModal />}
     </div>
   );
 };
@@ -110,8 +92,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 
   try {
-    const data = await getAlbumList();
-    return { props: { data } };
+    const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
+    return { props: { data, userInfo } };
   } catch (e) {
     return { notFound: true };
   }

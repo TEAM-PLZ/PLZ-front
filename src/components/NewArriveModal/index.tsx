@@ -1,8 +1,20 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Lp from 'components/Lp';
 import styles from './newArriveModal.module.css';
 
 const NewArriveModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  const onClick = () => {
+    setIsOpen(false);
+  };
+  if (!isOpen) return null;
+
   return (
     <div className={styles.background}>
       <p className={styles.headline}>
@@ -21,7 +33,7 @@ const NewArriveModal = () => {
         </div>
         <Image src="/images/envelop_front.svg" width="361" height="350" alt="envelope_front" />
       </div>
-      <button type="button" className={styles.button}>
+      <button type="button" className={styles.button} onClick={onClick}>
         플리 확인하러 가기
       </button>
     </div>

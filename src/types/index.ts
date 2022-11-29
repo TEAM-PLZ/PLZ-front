@@ -3,7 +3,7 @@ export interface IAlbum {
   id: number;
   message: string;
   randomCoverPath: string;
-  read: false;
+  read: boolean;
   receiver: {
     id: number;
     name: string;

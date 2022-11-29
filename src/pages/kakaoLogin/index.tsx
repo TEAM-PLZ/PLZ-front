@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import { checkUser } from 'services/auth';
 import { setCookie } from 'cookies-next';
-import type { IResCheckUser } from 'types/login';
+import type { IUserInfo } from 'types/login';
 
 interface IProps {
   token: string;
@@ -13,7 +13,7 @@ const COOKIE_OPTIONS = { path: '/', maxAge: 28800 }; // 8H
 const KakaoAuth: NextPage<IProps> = ({ token }: IProps) => {
   const getToken = async () => {
     setCookie('token', token, COOKIE_OPTIONS);
-    const result: IResCheckUser = await checkUser<IResCheckUser>();
+    const result: IUserInfo = await checkUser<IUserInfo>();
     if (result?.isFirst) {
       localStorage.setItem('isFirst', String(result.isFirst));
     } else {
