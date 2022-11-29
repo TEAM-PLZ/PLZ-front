@@ -76,6 +76,7 @@ const onBoarding = () => {
                 }}
               >
                 <Image
+                  priority
                   src={item.src}
                   width="0"
                   height="0"
