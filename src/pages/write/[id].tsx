@@ -124,16 +124,18 @@ const Write = ({ id }: { id: string }) => {
       title: `곡 제목을\n입력해주세요`,
       singer: `가수를\n입력해주세요`,
       url: `유튜브 링크를\n인증해주세요`,
+      thumbnailImgPath: `유튜브 링크를\n인증해주세요`,
       writerNickname: `닉네임을\n입력해주세요`,
     };
 
-    Object.keys(obj).forEach(key => {
-      if (obj[key] === '' && key !== 'randomCoverPath') {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [key, value] of Object.entries(obj)) {
+      if (value === '' && key !== 'randomCoverPath') {
         setPopup({ status: 'error', message: errorMessage[key] });
         return;
       }
-      newFormData.append(`${key}`, obj[key]);
-    });
+      newFormData.append(`${key}`, value);
+    }
 
     if (coverImgFile) newFormData.append('coverImgFile', coverImgFile as File);
 
