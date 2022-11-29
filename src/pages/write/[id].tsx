@@ -14,6 +14,7 @@ import WriteSuccess from 'components/Write/WriteSucess';
 import WriteFailure from 'components/Write/WriteFailure';
 import { useRecoilState } from 'recoil';
 import submitStatusState from 'stores/write';
+import { GetServerSideProps } from 'next';
 import styles from './write.module.css';
 
 interface IForm {
@@ -35,7 +36,7 @@ const lpSize = {
   center: 'w-[15.97px] h-[15.97px]',
 };
 
-const Write = () => {
+const Write = ({ id }: { id: string }) => {
   const [url, setUrl] = useState<string>('');
   const [thumbnailUrl, setThumbnailUrl] = useState<string>('');
   const [coverImgUrl, setCoverImgUrl] = useState<string>('');
@@ -114,7 +115,7 @@ const Write = () => {
       message,
       writerNickname,
       randomCoverPath: randomImageSrc,
-      receiverId: '3',
+      receiverId: id,
       thumbnailImgPath: thumbnailUrl,
     };
 
@@ -318,3 +319,13 @@ const Write = () => {
 };
 
 export default Write;
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { id } = query;
+
+  return {
+    props: {
+      id,
+    },
+  };
+};

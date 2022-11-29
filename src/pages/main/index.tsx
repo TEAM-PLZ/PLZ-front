@@ -14,9 +14,8 @@ import { IAlbum } from 'types/index';
 import { IUserInfo } from 'types/login';
 import { checkUser } from 'services/auth';
 import styles from './main.module.css';
-import mockData from './mock';
 
-const getDividedArray = (array: any[], n: number) => {
+const getDividedArray = (array: IAlbum[], n: number) => {
   const newArray = [];
   for (let i = 0; i < array.length; i += n) {
     const slicedArray = array.slice(i, i + n);
@@ -34,17 +33,19 @@ const Main = ({ data, userInfo }: IProps) => {
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
-  const templateArray = getDividedArray(mockData, 9);
-  const hasNew = mockData.some(item => !item.read);
+  const templateArray: Array<IAlbum[]> = getDividedArray(data, 9);
+  const hasNew = data.some(item => !item.read);
+  const isEmpty = data.some(item => item === undefined);
   const hasPopUp = isCopy && popup.status;
 
-  const onChangeCarousel = (now: any) => {
-    setPageIndex(now);
+  const onChangeCarousel = (now: number | undefined) => {
+    if (typeof now === 'number') setPageIndex(now);
   };
 
   const onClickShareBtn = async () => {
     try {
-      await onCopy(`write주소/${userInfo.id}`);
+      // 배포 후 주소 변경 필요
+      await onCopy(`http://localhost:3000/write/${userInfo.id}`);
       setPopup({ status: 'success', message: '복사되었습니다' });
     } catch {
       setPopup({ status: 'error', message: '다시 시도해주세요' });
@@ -52,15 +53,31 @@ const Main = ({ data, userInfo }: IProps) => {
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <Header page="home" />
-      <p className={`heading1 ${styles.headline}`}>
-        <span className="block">새로운 플리가 도착했어요</span>
-        <span className="block">바로 꺼내볼까요?</span>
-      </p>
+      <h1 className={`heading1 ${styles.headline}`}>
+        {hasNew && (
+          <>
+            <p>새로운 플리가 도착했어요.</p>
+            <p>바로 꺼내볼까요?</p>
+          </>
+        )}
+        {!hasNew && (
+          <>
+            <p>모든 플리를 확인했어요.</p>
+            <p>나만의 플리를 만들어볼까요?</p>
+          </>
+        )}
+        {isEmpty && (
+          <>
+            <p>플리가 비어있네요.</p>
+            <p>얼른 나만의 플리를 채워보세요!</p>
+          </>
+        )}
+      </h1>
       <Carousel animation="slide" autoPlay={false} indicators={false} onChange={onChangeCarousel}>
         {templateArray.map((item, index) => (
-          <div className={styles.albumList} key={index}>
+          <div className={styles.albumList} key={item[index].id}>
             <Template list={item} />
           </div>
         ))}
@@ -79,7 +96,7 @@ const Main = ({ data, userInfo }: IProps) => {
       </div>
       {hasPopUp && <PopupModal popup={popup} setPopup={setPopup} />}
       {hasNew && <NewArriveModal />}
-    </div>
+    </section>
   );
 };
 

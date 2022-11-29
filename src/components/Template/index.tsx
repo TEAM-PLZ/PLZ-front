@@ -11,7 +11,7 @@ const Row = ({ list }: IProps) => {
     <>
       <div className="flex justify-between px-[30px]">
         {list.map((item, index) => {
-          return <Album key={index} album={item} />;
+          return <Album key={item ? item.id : index} album={item} />;
         })}
       </div>
       <div className={styles.shelf} />
