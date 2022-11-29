@@ -9,7 +9,7 @@ const Login = () => {
 
   const sendPage = (isFirst: boolean) => {
     const path = isFirst ? '/onBoarding' : '/main';
-    router.push(path);
+    router.replace(path);
   };
 
   const loginKaKao = () => {

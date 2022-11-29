@@ -27,9 +27,12 @@ const getDividedArray = (array: IAlbum[], n: number) => {
 interface IProps {
   data: IAlbum[];
   userInfo: IUserInfo;
+  // eslint-disable-next-line react/require-default-props
+  error?: any;
 }
 
-const Main = ({ data, userInfo }: IProps) => {
+const Main = ({ data, userInfo, error }: IProps) => {
+  if (error) console.log(error);
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -44,8 +47,13 @@ const Main = ({ data, userInfo }: IProps) => {
 
   const onClickShareBtn = async () => {
     try {
-      // 배포 후 주소 변경 필요
-      await onCopy(`http://localhost:3000/write/${userInfo.id}`);
+      await onCopy(
+        `${
+          process.env.NODE_ENV === 'production'
+            ? 'https://plz-front-oglgo62l5-highjoon.vercel.app'
+            : 'http://localhost:3000'
+        }/write/${userInfo.id}`,
+      );
       setPopup({ status: 'success', message: '복사되었습니다' });
     } catch {
       setPopup({ status: 'error', message: '다시 시도해주세요' });
@@ -112,6 +120,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
     return { props: { data, userInfo } };
   } catch (e) {
-    return { notFound: true };
+    return { props: { error: e } };
   }
 };
