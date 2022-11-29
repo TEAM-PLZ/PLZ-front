@@ -1,0 +1,49 @@
+.lpWrapper {
+  position: relative;
+}
+
+.upDown {
+  animation: upDown 6s linear infinite;
+}
+
+.rotate {
+  animation: rotate 10s linear infinite;
+}
+
+.lp img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: inherit;
+  max-width: inherit;
+}
+
+.lp img:nth-last-of-type(2) {
+  border-radius: 50%;
+}
+
+.lpShadow {
+  position: absolute;
+  top: -112px;
+  left: -81px;
+  height: inherit;
+  max-width: inherit;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}

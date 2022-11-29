@@ -1,0 +1,88 @@
+.heading1 {
+  font-family: SF_HambakSnow;
+  line-height: 1.4;
+  letter-spacing: -0.84px;
+  font-weight: 800;
+  font-size: 28px;
+}
+
+.heading2 {
+  font-family: Cafe24Shiningstar;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  font-weight: 800;
+  font-size: 48px;
+}
+
+.body1 {
+  font-family: Cafe24Shiningstar;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.body2 {
+  font-family: Cafe24Shiningstar;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.body3 {
+  font-family: Cafe24Shiningstar;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.note {
+  font-family: Cafe24Oneprettynight;
+  line-height: 1.4;
+  letter-spacing: -0.36px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.bar1 {
+  font-family: 'PretendardMedium';
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.bar2 {
+  font-family: 'PretendardRegular';
+  line-height: 1.2;
+  letter-spacing: -0.07px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@font-face {
+  font-family: 'SF_HambakSnow';
+  src: url('/fonts/SFHambakSnow.ttf');
+}
+
+@font-face {
+  font-family: 'Cafe24Shiningstar';
+  src: url('/fonts/Cafe24Shiningstar.ttf');
+}
+
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('/fonts/Cafe24Oneprettynight.ttf');
+}
+
+@font-face {
+  font-family: 'PretendardMedium';
+  src: url('/fonts/PretendardMedium.otf');
+}
+
+@font-face {
+  font-family: 'PretendardRegular';
+  src: url('/fonts/PretendardRegular.otf');
+}

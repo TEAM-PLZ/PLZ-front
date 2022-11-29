@@ -1,0 +1,37 @@
+.container {
+  background-image: linear-gradient(to bottom, #fff 0%, #6566b3 100%);
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.headline {
+  padding: 50px 30px 29px;
+  background-image: linear-gradient(to bottom, #ab7bd1 0%, #9075ca 35%, #4877c2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sliderText {
+  font-family: Cafe24Oneprettynight;
+  @apply mb-[43px] text-center text-[18px];
+}
+
+.bottomWrapper {
+  color: white;
+  text-align: center;
+}
+
+.shareButton {
+  background: linear-gradient(180deg, #1b2125 0%, #4d545f 100%);
+  width: 250px;
+  height: 56px;
+  color: white;
+  border-radius: 12px;
+  margin: 14px auto 74px auto;
+  @apply flex items-center justify-center;
+}
+
+.shareButton img {
+  margin-right: 6px;
+}

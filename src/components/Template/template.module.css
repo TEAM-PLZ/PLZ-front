@@ -1,0 +1,11 @@
+.shelf {
+  background: linear-gradient(180deg, #1b2125 0%, #4d545f 100%);
+  transform: matrix(1, 0, 0, -1, 0, 0);
+  box-shadow: 0px -10px 15px rgba(0, 0, 0, 0.3);
+  @apply w-full h-[14px] mb-[62px] max-[445px]:mb-[32px];
+}
+
+.albumList {
+  width: 100%;
+  @apply flex flex-col justify-between flex-nowrap;
+}
