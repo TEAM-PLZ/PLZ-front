@@ -3,18 +3,19 @@ import Image from 'next/image';
 import styles from './login.module.css';
 
 const Login = () => {
-  // const sendPage = (isFirst: boolean) => {
-  //   const path = isFirst ? '/onBoarding' : '/main';
-  //   window.location.replace(path);
-  // };
+  const sendPage = (isFirst: boolean) => {
+    const path = isFirst ? '/onBoarding' : '/main';
+    window.location.replace(path);
+  };
 
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
-
+    console.log('start kakao');
     return popup?.addEventListener('beforeunload', () => {
-      window.location.replace('/main');
-      // sendPage(!!localStorage.getItem('isFirst'));
+      // window.location.replace('/main');
+      console.log('sendpage');
+      sendPage(!!localStorage.getItem('isFirst'));
     });
   };
 
