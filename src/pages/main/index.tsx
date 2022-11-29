@@ -29,10 +29,18 @@ interface IProps {
   data: IAlbum[];
   userInfo: IUserInfo;
   error: string;
+  // eslint-disable-next-line react/require-default-props
+  errorData?: string;
 }
 
-const Main = ({ data, userInfo, error }: IProps) => {
-  if (error) return <div>{error}</div>;
+const Main = ({ data, userInfo, error, errorData }: IProps) => {
+  if (error)
+    return (
+      <div>
+        {error}
+        <div>{errorData}</div>
+      </div>
+    );
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -124,6 +132,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       return {
         props: {
           error: e.response?.data,
+          errorData: JSON.stringify(e),
         },
       };
     }
