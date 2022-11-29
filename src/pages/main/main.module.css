@@ -12,11 +12,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-.albumList {
-  width: 100%;
-  @apply flex flex-nowrap flex-col justify-between;
-}
-
 .sliderText {
   font-family: Cafe24Oneprettynight;
   @apply mb-[43px] text-center text-[18px];
@@ -34,7 +29,7 @@
   color: white;
   border-radius: 12px;
   margin: 14px auto 74px auto;
-  @apply flex justify-center items-center;
+  @apply flex items-center justify-center;
 }
 
 .shareButton img {
