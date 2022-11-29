@@ -1,6 +1,6 @@
 <div align="center">
     <img width="200px" src="https://user-images.githubusercontent.com/23312485/204471121-ef643f75-25fe-4942-a2fa-8a7eb4bd40c1.png"/>
-    <h1>내 플리를 부탁해, 플리즈🙏</h1>
+    <h3>내 플리를 부탁해, 플리즈🙏</h3>
 </div>
 
 ## 소개
@@ -18,54 +18,54 @@
 <p>➡<b>플리즈</b>에서 주변사람들이 나를 위해 만든 플레이리스트를 들어보세요!</p>
 
 <br />
-<br />
+
 저희 **플리즈**는 내가 아닌 주변사람들이 플레이리스트를 만들어줍니다!
 
 LP를 선물받아 플레이리스트를 채워보아요✨
 
-## 사용법
-
-### 받는 사람(로그인 O)
-
-1. 로그인 후 링크를 주변 사람들에게 공유해요.
-2. 선물받은 앨범을 클릭하면 메시지와 노래를 들을 수 있어요.
-
-### 보내는 사람(로그인 X)
-
-1. 보내고 싶은 노래의 유튜브 링크를 복사해주세요. (주소 or 공유 링크)
-2. LP 커버 이미지를 업로드해주세요. 하지만 없어도 괜찮아요. 랜덤 이미지가 있거든요!
-3. 보내고 싶은 메시지를 작성해주세요.
-4. 닉네임을 입력해주세요.
-5. 하단 보내기 버튼을 클릭하면 완료!
+<br />
 
 ## 👨‍👨‍👧‍👦팀원
 
 |                                                      Frontend                                                      |                                                       Frontend                                                       |                                                      Frontend                                                      |                                                      Frontend                                                      |                                                      Backend                                                       |                                           Designer                                            |
 | :----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/89131236?v=4" alt="워니" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/63948484?v=4" alt="하이준" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/23312485?v=4" alt="주기" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/89791868?v=4" alt="히라" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/66585769?v=4" alt="복어" width=400px style="border-radius:50%"/> | <img src="https://i.imgur.com/1eTcEYb.png" alt="헤나" width=400px style="border-radius:50%"/> |
+| <img src="https://avatars.githubusercontent.com/u/89131236?v=4" alt="워니" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/63948484?v=4" alt="하이준" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/23312485?v=4" alt="주기" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/89791868?v=4" alt="히라" width=400px style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/66585769?v=4" alt="복어" width=400px style="border-radius:50%"/> | <img src="https://i.imgur.com/4HR2LVE.png" alt="헤나" width=400px style="border-radius:50%"/> |
 |                                         [워니](https://github.com/wkqkel)                                          |                                        [하이준](https://github.com/highjoon)                                         |                                       [주기](https://github.com/kangju2000)                                        |                                        [히라](https://github.com/seoyoonyi)                                        |                                       [복어](https://github.com/lenope1214)                                        |                                  [헤나](https://github.com)                                   |
+
+<br />
 
 ## 🌈디자인
 
-![](https://i.imgur.com/MZ8GpWE.jpg)
+|                                                                                   페이지                                                                                   |                                                                                                                                                                  설명                                                                                                                                                                  |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                          <img src="https://i.imgur.com/qXyESao.png" width="50%"/>                                                          |                                                                                                               <h3>로그인 페이지</h3><div align="left"><p>✅ 기존에 있는 카카오 아이디로 쉽게 가입할 수 있어요.</p></div>                                                                                                               |
+|                              <img src="https://i.imgur.com/t71lTYj.png" width="50%"/><img src="https://i.imgur.com/VJtiE9n.png" width="50%"/>                              |                                                                             <h3>메인 페이지</h3><div align="left"><p>✅ 앨범들을 확인할 수 있어요.</p><p>✅ 새로 온 앨범 위에 "NEW" 버튼이 생겨요.</p><p>✅ 단 버튼을 클릭하면 링크를 복사해요.</p></div>                                                                              |
+|                                                          <img src="https://i.imgur.com/hUrtl5Q.png" width="50%"/>                                                          |                                                                                                                 <h3>앨범 페이지</h3><div align="left"><p>✅ 받은 앨범의 노래를 듣고 메시지를 읽을 수 있어요.</p></div>                                                                                                                 |
+| <img src="https://i.imgur.com/JHh5MJJ.png" width="33%"/><img src="https://i.imgur.com/YXWRayO.png" width="33%" /><img src="https://i.imgur.com/shrBTJ8.png" width="33%" /> | <h3>앨범 작성 페이지</h3><div align="left"><p>✅ 노래와 메시지를 담아 보낼 수 있어요.</p><p>1️⃣ 전달할 유튜브 링크를 복사해서 인증해주세요.</p><p>2️⃣ 곡 제목과 아티스트 명을 입력해주세요.</p><p>3️⃣ LP 커버 이미지를 업로드해주세요. 없으면 랜덤 이미지를 설정할 수 있어요.</p><p>4️⃣ 닉네임을 입력하고 하단에 전송 버튼 클릭!</p></div> |
+
+<br />
 
 ## 기술 스택
 
-Frontend
+### Frontend
+
 ![](https://i.imgur.com/56kyTti.png)
 
-Backend
+### Backend
+
 ![](https://i.imgur.com/dV5lSHY.png)
+
+<br />
 
 ## 설치 및 실행
 
-install
+### install
 
 ```bash=
 yarn install
 ```
 
-run
+### run
 
 ```bash=
 yarn dev
