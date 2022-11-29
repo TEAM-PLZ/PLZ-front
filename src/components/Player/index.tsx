@@ -15,6 +15,7 @@ const Player = ({ videoId }: IPlayer) => {
   const [isPlaying, setIsPlaying] = useRecoilState<boolean>(playState);
   const [curTime, setCurTime] = useState(0);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let timeInterval: any;
   const startInterval = () => {
     timeInterval = setInterval(() => {
@@ -22,9 +23,9 @@ const Player = ({ videoId }: IPlayer) => {
     }, 300);
   };
 
-  const onPrevAlbum = () => {};
+  // const onPrevAlbum = () => {};
 
-  const onNextAlbum = () => {};
+  // const onNextAlbum = () => {};
 
   const onPlay = () => {
     if (youtube) {
@@ -50,6 +51,7 @@ const Player = ({ videoId }: IPlayer) => {
         }}
         onReady={(event: YouTubeEvent) => {
           if (event.target.videoTitle === '') {
+            // eslint-disable-next-line no-console
             console.log('에러메시지');
             return;
           }
@@ -67,9 +69,9 @@ const Player = ({ videoId }: IPlayer) => {
       <section className={styles.player}>
         {youtube && <ProgressBar curTime={curTime} duration={duration} />}
         <div className={styles.control}>
-          <button type="button" onClick={onPrevAlbum}>
+          {/* <button type="button" onClick={onPrevAlbum}>
             <img src="/icons/left.svg" alt="left" />
-          </button>
+          </button> */}
           {isPlaying ? (
             <button type="button" onClick={onPause}>
               <img src="/icons/pause.svg" className="mx-12" alt="pause" />
@@ -79,9 +81,9 @@ const Player = ({ videoId }: IPlayer) => {
               <img src="/icons/play.svg" className="mx-12" alt="play" />
             </button>
           )}
-          <button type="button" onClick={onNextAlbum}>
+          {/* <button type="button" onClick={onNextAlbum}>
             <img src="/icons/right.svg" alt="right" />
-          </button>
+          </button> */}
         </div>
       </section>
     </>

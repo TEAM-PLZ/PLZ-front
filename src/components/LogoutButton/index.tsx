@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { deleteCookie } from 'cookies-next';

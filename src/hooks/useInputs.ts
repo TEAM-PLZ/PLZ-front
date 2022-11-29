@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useInputs = <T = Record<string, any>>(
+const useInputs = <T = Record<string, unknown>>(
   initialForm: T,
 ): [
   T,
