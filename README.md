@@ -1,13 +1,9 @@
-<div style="text-align:center;">
-    <img width="200px;" src="https://user-images.githubusercontent.com/23312485/204471121-ef643f75-25fe-4942-a2fa-8a7eb4bd40c1.png"/>
+<div align="center">
+    <img width="200px" src="https://user-images.githubusercontent.com/23312485/204471121-ef643f75-25fe-4942-a2fa-8a7eb4bd40c1.png"/>
     <h1>내 플리를 부탁해, 플리즈🙏</h1>
 </div>
 
 ## 소개
-
-저희 **플리즈**는 내가 아닌 주변사람들이 플레이리스트를 만들어줍니다!
-
-LP를 선물받아 플레이리스트를 채워보아요✨
 
 ### 하고 싶은 말이 있지만 직접 말하기 힘드신가요?
 
@@ -20,6 +16,12 @@ LP를 선물받아 플레이리스트를 채워보아요✨
 ### 매일 듣는 플레이리스트는 이제 지겹나요?
 
 <p>➡<b>플리즈</b>에서 주변사람들이 나를 위해 만든 플레이리스트를 들어보세요!</p>
+
+<br />
+<br />
+저희 **플리즈**는 내가 아닌 주변사람들이 플레이리스트를 만들어줍니다!
+
+LP를 선물받아 플레이리스트를 채워보아요✨
 
 ## 사용법
 
@@ -45,7 +47,7 @@ LP를 선물받아 플레이리스트를 채워보아요✨
 
 ## 🌈디자인
 
-![](https://i.imgur.com/TWPlqGl.jpg)
+![](https://i.imgur.com/MZ8GpWE.jpg)
 
 ## 기술 스택
 
