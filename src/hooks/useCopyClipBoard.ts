@@ -11,6 +11,7 @@ function useCopyClipBoard(): [boolean, onCopyFn] {
       setIsCopy(true);
       return true;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       setIsCopy(false);
 
