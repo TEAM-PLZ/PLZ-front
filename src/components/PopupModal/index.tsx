@@ -24,7 +24,7 @@ const PopupModal = ({ popup, setPopup }: IPopupModal) => {
         status: '',
         message: '',
       });
-    }, 1000);
+    }, 2000);
   }, [popup]);
 
   return (

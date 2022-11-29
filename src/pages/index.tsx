@@ -11,10 +11,9 @@ const Login = () => {
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
-    console.log('start kakao');
+
     return popup?.addEventListener('beforeunload', () => {
       // window.location.replace('/main');
-      console.log('sendpage');
       sendPage(!!localStorage.getItem('isFirst'));
     });
   };

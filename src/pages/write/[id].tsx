@@ -287,7 +287,7 @@ const Write = ({ id }: { id: string }) => {
               />
               <p className="note absolute right-[20px] bottom-[20px] text-[#9c9c9c]">{`${message.length}자 / 100자`}</p>
             </div>
-            <div className={`note ${styles.writer_nickname}`}>
+            <div className="note text-[#b3b3b3] text-right w-[384px] border-b-[1px] mt-[30px] m-auto border-[#b3b3b3]">
               <span>From.</span>
               <input
                 type="text"
@@ -295,9 +295,10 @@ const Write = ({ id }: { id: string }) => {
                 onChange={handleChange}
                 value={writerNickname}
                 placeholder="보내는 사람 닉네임을 입력해주세요."
-                className={` ${styles.input_writer_nickname}`}
+                className={`${styles.input_writer_nickname}`}
               />
             </div>
+            <div className="pb-[180px]" />
           </div>
           <div
             className={`body1 ${styles.send_album}`}

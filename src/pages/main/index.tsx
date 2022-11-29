@@ -1,8 +1,6 @@
-import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Carousel from 'react-material-ui-carousel';
-import { useState } from 'react';
-import { getCookies } from 'cookies-next';
+import { useEffect, useState } from 'react';
 import Header from 'components/Header';
 import Template from 'components/Template';
 import NewArriveModal from 'components/NewArriveModal';
@@ -10,12 +8,43 @@ import PopupModal from 'components/PopupModal';
 import useCopyClipBoard from 'hooks/useCopyClipBoard';
 import { getAlbumList } from 'services/album';
 import { IAlbum } from 'types/index';
-import { IUserInfo } from 'types/login';
+
 import { checkUser } from 'services/auth';
-import apiClient, { isAxiosError } from 'services/apiClient';
+
 import styles from './main.module.css';
 
+const EMPTY_OBJECT = {
+  coverImgPath: '',
+  id: 0,
+  message: '',
+  randomCoverPath: '',
+  read: true,
+  receiver: {
+    id: 0,
+    name: '',
+  },
+  singer: '',
+  thumbnailImgPath: '',
+  title: '',
+  url: '',
+  writer: {
+    id: 0,
+    name: '',
+  },
+  writerNickname: '',
+};
+
 const getDividedArray = (array: IAlbum[], n: number) => {
+  if (array.length === 0) {
+    return [
+      [
+        ...Array(9)
+          .fill(0)
+          .map((_, index) => ({ ...EMPTY_OBJECT, id: index, read: false })),
+      ],
+    ];
+  }
+
   const newArray = [];
   for (let i = 0; i < array.length; i += n) {
     const slicedArray = array.slice(i, i + n);
@@ -24,13 +53,9 @@ const getDividedArray = (array: IAlbum[], n: number) => {
   return newArray;
 };
 
-interface IProps {
-  data: IAlbum[];
-  userInfo: IUserInfo;
-  error: string;
-}
-
-const Main = ({ data, userInfo, error }: IProps) => {
+const Main = () => {
+  const [data, setData] = useState<IAlbum[]>([]);
+  const [userInfo, setUserInfo] = useState({ id: 0, name: '', role: '' });
   const [isCopy, onCopy] = useCopyClipBoard();
   const [popup, setPopup] = useState({ status: '', message: '' });
   const [pageIndex, setPageIndex] = useState(0);
@@ -58,13 +83,19 @@ const Main = ({ data, userInfo, error }: IProps) => {
     }
   };
 
-  if (error) {
-    return (
-      <section className={styles.container}>
-        <h1 className={`heading1 ${styles.headline}`}>{error}</h1>
-      </section>
-    );
-  }
+  const getUserInfo = async () => {
+    const result = (await checkUser()) as any;
+    setUserInfo(result);
+  };
+  const getDataList = async () => {
+    const result = (await getAlbumList()) as any;
+    setData(result);
+  };
+
+  useEffect(() => {
+    getDataList();
+    getUserInfo();
+  }, []);
 
   return (
     <section className={styles.container}>
@@ -116,28 +147,17 @@ const Main = ({ data, userInfo, error }: IProps) => {
 
 export default Main;
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const { token } = getCookies(context);
-  // console.log(token);
-  apiClient.defaults.headers.Authorization = `Bearer ${token}`;
+// export const getServerSideProps: GetServerSideProps = async context => {
+//   const { token } = getCookies(context);
+//   apiClient.defaults.headers.Authorization = `Bearer ${token}`;
 
-  try {
-    const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
+//   try {
+//     const [data, userInfo] = await Promise.all([getAlbumList(), checkUser<IUserInfo>()]);
 
-    return { props: { data, userInfo } };
-  } catch (e) {
-    if (isAxiosError(e)) {
-      return {
-        props: {
-          error: e.response?.data,
-        },
-      };
-    }
-
-    return {
-      props: {
-        error: '알 수 없는 오류가 발생했습니다.',
-      },
-    };
-  }
-};
+//     return { props: { data, userInfo } };
+//   } catch (e) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// };
