@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { getCookie } from 'cookies-next';
 import LpCover from 'components/LpCover';
 import { useSetRecoilState } from 'recoil';
@@ -13,21 +12,22 @@ interface IWriteFailure {
 }
 
 const WriteFailure = ({ coverImgPath, thumbnailImgPath }: IWriteFailure) => {
-  const router = useRouter();
   const token = getCookie('token');
   const setSubmitStatus = useSetRecoilState(submitStatusState);
 
-  const sendPage = (isFirst: boolean) => {
-    const path = isFirst ? '/onBoarding' : '/main';
-    router.push(path).then(() => setSubmitStatus(''));
-  };
+  // const sendPage = (isFirst: boolean) => {
+  //   const path = isFirst ? '/onBoarding' : '/main';
+  // router.push(path).then(() => setSubmitStatus(''));
+  //   window.location.replace(path);
+  // };
 
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
 
     popup?.addEventListener('beforeunload', () => {
-      sendPage(!!localStorage.getItem('isFirst'));
+      window.location.replace('/main');
+      // sendPage(!!localStorage.getItem('isFirst'));
     });
   };
 

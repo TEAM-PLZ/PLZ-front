@@ -1,23 +1,20 @@
 import Lp from 'components/Lp';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-
 import styles from './login.module.css';
 
 const Login = () => {
-  const router = useRouter();
-
-  const sendPage = (isFirst: boolean) => {
-    const path = isFirst ? '/onBoarding' : '/main';
-    router.replace(path);
-  };
+  // const sendPage = (isFirst: boolean) => {
+  //   const path = isFirst ? '/onBoarding' : '/main';
+  //   window.location.replace(path);
+  // };
 
   const loginKaKao = () => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/oauth2/authorization/kakao`;
     const popup = window.open(url, 'kakao', 'width=550,height=850,left=0,top=0');
 
-    popup?.addEventListener('beforeunload', () => {
-      sendPage(!!localStorage.getItem('isFirst'));
+    return popup?.addEventListener('beforeunload', () => {
+      window.location.replace('/main');
+      // sendPage(!!localStorage.getItem('isFirst'));
     });
   };
 
